@@ -1,0 +1,11 @@
+<section class="section-delete">
+    <div class="section-delete-wrapper">
+        <div class="section-delete-wrapper__box {{user_info.theme}}_bg">
+            <form class="delete" action="/notes/delete/{{pk}}/" method="post">
+                {% csrf_token %}
+                <p class="text {{user_info.theme}}_elems">Are you sure to delete note <span class='{{user_info.theme}}_elems'>"{{ note.header }}"</span>?</p>
+                <button class="submit {{user_info.accent_color}}_bg" type="submit">Delete Note</button>
+            </form>
+        </div>
+    </div>
+</section>

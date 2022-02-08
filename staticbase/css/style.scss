@@ -1,0 +1,61 @@
+@import './breakpoints';
+@import './create';
+@import './delete_note';
+@import './email_verification_complete';
+@import './update_collection';
+@import './login';
+@import './main';
+@import './read';
+@import './registration';
+@import './reset';
+@import './reset_password';
+@import './reset_password_confirm';
+@import './reset_password_complete';
+@import './reset_password_done';
+@import './update_note';
+@import './userpage';
+
+:root {
+    --light-bg: #fff;
+    --light-elements: #000;
+    --light-inputs: #d7d7d7;
+    --dark-bg: #393939;
+    --dark-elements: #D7D7D7;
+    --dark-inputs: #5E5E5E;
+
+    --acc-col-red: #FF1700;
+    --acc-col-light-blue: #71DFE7;
+    --acc-col-green: #4BCE1C;
+    --acc-col-orange: #F06C0C;
+
+    --acc-col-red-alpha: #FF170070;
+    --acc-col-light-blue-alpha: #71DFE770;
+    --acc-col-green-alpha: #4BCE1C70;
+    --acc-col-orange-alpha: #F06C0C70;
+}
+::selection {
+    background-color: #356c70;
+    color: #fff;
+}
+a:visited, a:focus {
+    text-decoration:none;
+}
+html, body {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+/* custom scrollbar */
+body::-webkit-scrollbar {
+    width: 20px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+}

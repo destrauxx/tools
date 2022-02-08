@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="section-email_verification-complete">
+    <div class="section-email_verification-complete-wrapper">
+        <div class="section-email_verification-complete-wrapper-navbar">
+            <div class="section-email_verification-complete-wrapper-navbar__toolsApp_logo"></div>
+        </div>
+        <div class="section-email_verification-complete-wrapper-content_box">
+            <div class="section-email_verification-complete-wrapper-content_box-wrapper">
+                <div class="section-email_verification-complete-wrapper-content_box-wrapper-info_block">
+                    <div class="section-email_verification-complete-wrapper-content_box-wrapper-info_block-text_block">
+                        <p class='section-email_verification-complete-wrapper-content_box-wrapper-info_block-text_block__header'>Congratulations!</p>
+                        <p class='section-email_verification-complete-wrapper-content_box-wrapper-info_block-text_block__text'>Your email address have been successfully verificated!</p>
+                    </div>
+                    <a href='/auth/login/' class="section-email_verification-complete-wrapper-content_box-wrapper-info_block-button">
+                        <div class='section-email_verification-complete-wrapper-content_box-wrapper-info_block-button__text'>Start using ToolsApp</div>
+                    </a>
+                </div>
+                <div class="section-email_verification-complete-wrapper-content_box-wrapper__icon"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

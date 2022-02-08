@@ -1,0 +1,65 @@
+
+    <div class="section-create">
+        <div class="section-create-wrapper">
+            {% if messages %}
+            <div class="messages {{user_info.theme}}_m">
+                <div class="top">
+                    <button class="cross {{ user_info.theme }}_c"></button>
+                </div>
+                <div class="bottom">
+                    <div class="blockfirst">
+                        <div class="correct"></div>
+                    </div>
+                    <div class="blocksecond">
+                        {% for message in messages %}
+                        <h1 {% if message.tags %} class="{{ message.tags }} {{ user_info.theme }}_mtext"{% endif %}>{{ message }}!</h1>
+                        {% endfor %}
+                        <a class="linktoread {{ user_info.accent_color }}_linkw" href="/notes/read/">Watch it!</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            <div class="section-create-wrapper__main">
+                <div class="section-create-wrapper__main__box {{ user_info.theme }}_bgbox">
+                    <div class="section-create-wrapper__main__box__image"></div>
+                    <div class="block_createform">
+                        <h1 class="create_text {{user_info.theme}}_colortext">Create Note</h1>
+                        <form class="creation" action="/notes/create/" method="post" autocomplete="off">
+                            {% csrf_token %}
+                        
+                            <p>
+                                <label class="headertext {{user_info.theme}}_labeltext" for="id_header">Note header:</label>
+                                {{ form.header }}
+                            </p>
+                            <p>
+                                <label class="bodytext {{user_info.theme}}_labeltext" for="id_text">Note text:</label>
+                                {{ form.text }}
+                            </p>
+                            <button class="submit {{user_info.accent_color}}_btn" type="submit">Create note</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+
+    // name
+    document.getElementById("id_header").classList.add("header_field_{{user_info.accent_color}}");
+
+    // text
+    document.getElementById("id_text").classList.add("text_field_{{user_info.accent_color}}");
+    document.getElementById("id_text").placeholder = "Note text";
+    
+    let cross = document.querySelector('.cross');
+    let messages = document.querySelector('.messages');
+    cross.addEventListener("click", (e) => {
+        messages.classList.toggle('remove')
+    })
+    let create = document.querySelector('.create-block');
+    let sectionCreate = document.querySelector('.section-create');
+
+    create.addEventListener("click", (e) => {
+        sectionCreate.style.display = 'block'
+    });
+</script>

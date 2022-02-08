@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<section class="section">
+    <div class="section-wrapper">
+        <div class="section-wrapper-top">
+            <div class="section-wrapper-top__logo_block">
+                <div class="section-wrapper-top__logo_block__logo"></div>
+            </div>
+            <div class="rest_block">
+                <div class="list_models">
+                    <div class="list_models__notes">
+                        <a class="link" href="/notes/read/">Notes</a>
+                    </div>
+                    <div class="list_models__library">
+                        <a class="link" href="/">Library</a>
+                    </div>
+                    <div class="list_models__desks">
+                        <a class="link" href="/">Desks</a>
+                    </div>
+                </div>
+                {% if user.is_authenticated %}
+                    <div class="section-wrapper-top__logout">
+                        <a class="logout" href="/auth/logout">Logout</a>
+                    </div>
+                {% else %}
+                    <div class="section-wrapper-top__login">
+                        <a class="login" href="/auth/login">Login</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="section-wrapper-middle">
+            <div class="section-wrapper-middle__main">
+                <div class="section-wrapper-middle__main__text">
+                    <div class="title">
+                        <h1>Say no to inconvenience,</h1>
+                        <h1>say yes to multitool!</h1>
+                    </div>
+                    <div class="subtitle">
+                        <p>ToolsApp saves you from endless switching between the applications you need. Our application has all the tools you need.</p>
+                    </div>
+                </div>
+                {% if not user.is_authenticated %}
+                <div class="section-wrapper-middle__main__button">
+                    <a class="start" href="auth/login/">Start using ToolsApp</a>
+                </div>
+                {% endif %}
+            </div>
+            <div class="section-wrapper-middle__image"></div>
+        </div> 
+    </div>
+</section>
+{% endblock content %}

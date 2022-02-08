@@ -1,0 +1,499 @@
+.section-create {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.425);
+    position: absolute;
+    top: 0;
+    z-index: 99999;
+    &-wrapper {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .messages {
+            width: 320px;
+            height: 150px;
+            border: none;
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
+            border-radius: 10px;    
+            position: absolute;
+            top: 15%;
+            right: -10%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation: animate 0.6s ease-in;
+            @include media('>=LGdesktop') {
+                top: 10%;
+                right: -8%;
+            }
+            .top {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                width: 100%;
+                .cross {
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    width: 18px;
+                    height: 18px;
+                    border: none;
+                    margin-right: 5px;
+                    margin-top: 5px;
+                }
+            }
+            .bottom {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 300px;
+                .blockfirst {
+                    width: 30%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .correct {
+                        background: url('../media/create_and_read_images/correct.png');
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        width: 75px;
+                        height: 75px;
+                    }
+                }
+                .blocksecond {
+                    display: flex;
+                    flex-direction: column;
+                    width: 70%;
+                    align-items: center;
+                    .success {
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 13px;
+                        line-height: 14px;
+                        text-align: right;
+                        width: 80%;
+                    }
+                    .linktoread {
+                        width: 150px;
+                        height: 35px;  
+                        color: #fff;
+                        font-size: 16px;
+                        text-decoration: none;
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        text-align: center;
+                        letter-spacing: 0.1em;
+                        border-radius: 86px;
+                        border: none;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin: 8px 0 0 50px;
+                    }
+                }   
+            }
+        }
+        @keyframes animate {
+            0% {
+                top: -4%;
+            }
+            100% {
+                top: 8%;
+            }
+        }
+        .remove {
+            display: none;
+        }
+        &__main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &__box {
+                width: 835px;
+                height: 500px;
+                border-radius: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                @include media('>=LGdesktop') {
+                    width: 1035px;
+                    height: 700px;
+                }
+                &__image {
+                    background: url('../media/create_and_read_images/human.png');
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    width: 400px;
+                    height: 500px;
+                    @include media('>=LGdesktop') {
+                        width: 500px;
+                        height: 660px;
+                    }
+                }
+                .block_createform {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 400px;
+                    height: 370px;
+                    @include media('>=LGdesktop') {
+                        height: 370px;
+                    }
+                    .create_text {
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        font-style: normal;
+                        font-weight: bolder;
+                        font-size: 32px;
+                        text-align: center;
+                        color: #000000;
+                        @include media('>=LGdesktop') {
+                            font-size: 39px;
+                        }
+                    }
+                    .creation {
+                        margin-top: 30px;
+                        p {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: flex-start;
+                            align-items: flex-start;
+                            .headertext {
+                                font-family: 'Montserrat', sans-serif;
+                                font-style: normal;
+                                font-weight: 300;
+                                font-size: 16px;
+                                text-align: center;
+                                color: #000000;
+                                @include media('>=LGdesktop') {
+                                    font-size: 19px;
+                                }
+                            }
+                        }
+                        .bodytext {
+                            font-family: 'Montserrat', sans-serif;
+                            font-style: normal;
+                            font-weight: 300;
+                            font-size: 16px;
+                            text-align: center;
+                            color: #000000;
+                            margin-top: 30px;
+                            @include media('>=LGdesktop') {
+                                font-size: 19px;
+                            }
+                        }
+                        #id_text::-webkit-scrollbar {
+                            width: 20px;
+                        }
+                          
+                        #id_text::-webkit-scrollbar-track {
+                            background-color: transparent;
+                        }
+                        
+                        #id_text::-webkit-scrollbar-thumb {
+                            background-color: #d6dee1;
+                            border-radius: 20px;
+                            border: 6px solid transparent;
+                            background-clip: content-box;
+                        }
+                        
+                        #id_text::-webkit-scrollbar-thumb:hover {
+                            background-color: #a8bbbf;
+                        }
+                        .submit {
+                            border: none;
+                            width: 260px;
+                            height: 60px;
+                            color: #fff;
+                            font-family: 'Montserrat Alternates', sans-serif;
+                            font-style: normal;
+                            font-weight: 700;
+                            font-size: 23px;
+                            border-radius: 67px;
+                            margin-top: 30px;
+                            margin-left: 25px;
+                            transition: 0.3s ease-in-out;
+                            @include media('>=LGdesktop') {
+                                width: 300px;
+                                height: 65px;
+                                margin-left: 30px;
+                                margin-top: 45px;
+                            }
+                            &:hover {
+                                box-shadow: 1px 1px 16px rgba(0, 0, 0, 0.45); 
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Dark
+.dark_line {
+    background-color: var(--light-inputs) !important;
+}
+.dark_bgbox {
+    background: var(--dark-bg) !important;
+}
+.dark_colortext {
+    color: var(--light-inputs) !important;
+}
+.dark_labeltext {
+    color: var(--light-inputs) !important;
+}
+.dark_m {
+    background: var(--dark-bg) !important;
+    box-shadow: 5px 5px 20px rgba(175, 175, 175, 0.25);
+}
+.dark_mtext {
+    color: #fff;
+}
+.dark_c {
+    background: url('../media/accent_icons/dark/cross.png');
+}
+
+// Light
+.light_line {
+    background-color: var(--light-inputs) !important;
+}
+.light_bgbox {
+    background: var(--light-bg) !important;
+    box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.25);
+}
+.light_colortext {
+    color: var(--light-elements) !important;
+}
+.light_m {
+    background: #fff;
+}
+.light_mtext {
+    color: #000;
+}
+.light_c {
+    background: url('../media/accent_icons/light/cross.png')
+}
+
+
+// Logo dark with accent color
+.dark_theme_orange_logo {
+    background: url('../media/accent_icons/dark/orangeLogo_ToolApp.png');
+}
+.dark_theme_red_logo {
+    background: url('../media/accent_icons/dark/redLogo_ToolApp.png');
+}
+.dark_theme_green_logo {
+    background: url('../media/accent_icons/dark/greenLogo_ToolApp.png');
+}
+.dark_theme_light_blue_logo {
+    background: url('../media/accent_icons/dark/blueLogo_ToolApp.png');
+}
+
+// accent colors
+.light_blue_btn {
+    background-color: var(--acc-col-light-blue) !important;
+}
+.orange_btn {
+    background-color: var(--acc-col-orange) !important;
+}
+.green_btn {
+    background-color: var(--acc-col-green) !important;
+}
+.red_btn {
+    background-color: var(--acc-col-red) !important;
+}
+.light_blue_linkw {
+    background-color: var(--acc-col-light-blue);
+}
+.red_linkw {
+    background-color: var(--acc-col-red);
+}
+.orange_linkw {
+    background-color: var(--acc-col-orange);
+}
+.green_linkw {
+    background-color: var(--acc-col-green);
+}
+    // header field
+    .header_field_light_blue {
+        width: 325px;
+        height: 50px;
+        background: #FFFFFF;
+        border: 3px solid #000000;
+        box-sizing: border-box;
+        border-radius: 10px;
+        margin-top: 10px;
+        text-indent: 15px;
+        font-size: 13px;
+        transition: 0.2s ease-in;
+        @include media('>=LGdesktop') {
+            width: 380px;
+            height: 65px;
+            font-size: 14px;
+        }
+        &:focus {
+            border: 3px solid var(--acc-col-light-blue) !important;
+            background: #ececec;
+        }
+    }
+    .header_field_red {
+        width: 325px;
+        height: 50px;
+        background: #FFFFFF;
+        border: 3px solid #000000;
+        box-sizing: border-box;
+        border-radius: 10px;
+        margin-top: 10px;
+        text-indent: 15px;
+        font-size: 13px;
+        transition: 0.2s ease-in;
+        @include media('>=LGdesktop') {
+            width: 380px;
+            height: 65px;
+            font-size: 14px;
+        }
+        &:focus {
+            border: 3px solid var(--acc-col-red) !important;
+            background: #ececec;
+        }
+    }
+    .header_field_green {
+        width: 325px;
+        height: 50px;
+        background: #FFFFFF;
+        border: 2px solid #000000;
+        box-sizing: border-box;
+        border-radius: 10px;
+        margin-top: 10px;
+        text-indent: 15px;
+        font-size: 13px;
+        transition: 0.2s ease-in;
+        @include media('>=LGdesktop') {
+            width: 380px;
+            height: 65px;
+            font-size: 14px;
+        }
+        &:focus {
+            border: 3px solid var(--acc-col-green) !important;
+            background: #ececec;
+        }
+    }
+    .header_field_orange {
+        width: 325px;
+        height: 50px;
+        background: #FFFFFF;
+        border: 3px solid #000000;
+        box-sizing: border-box;
+        border-radius: 10px;
+        margin-top: 10px;
+        text-indent: 15px;
+        font-size: 13px;
+        transition: 0.2s ease-in;
+        @include media('>=LGdesktop') {
+            width: 380px;
+            height: 65px;
+            font-size: 14px;
+        }
+        &:focus {
+            border: 3px solid var(--acc-col-orange) !important;
+            background: #ececec;
+        }
+    }
+    // text field
+    .text_field_light_blue {
+        width: 325px;
+        height: 90px;
+        background: #FFFFFF;
+        border: 3px solid #000000;
+        box-sizing: border-box;
+        border-radius: 10px;
+        margin-top: 10px;
+        text-indent: 15px;
+        resize: none;
+        font-size: 13px;
+        line-height: 20px;
+        transition: 0.2s ease-in;
+        @include media('>=LGdesktop') {
+            width: 380px;
+            height: 90px;
+            font-size: 14px;
+        }
+        &:focus {
+            border: 3px solid var(--acc-col-light-blue) !important;
+            background: #ececec;
+        }
+    }
+    .text_field_red {
+        width: 325px;
+        height: 90px;
+        background: #FFFFFF;
+        border: 3px solid #000000;
+        box-sizing: border-box;
+        border-radius: 10px;
+        margin-top: 10px;
+        text-indent: 15px;
+        resize: none;
+        font-size: 13px;
+        line-height: 20px;
+        transition: 0.2s ease-in;
+        @include media('>=LGdesktop') {
+            width: 380px;
+            height: 90px;
+            font-size: 14px;
+        }
+        &:focus {
+            border: 3px solid var(--acc-col-red) !important;
+            background: #ececec;
+        }
+    }
+    .text_field_green {
+        width: 325px;
+        height: 90px;
+        background: #FFFFFF;
+        border: 3px solid #000000;
+        box-sizing: border-box;
+        border-radius: 10px;
+        margin-top: 10px;
+        text-indent: 15px;
+        resize: none;
+        font-size: 13px;
+        line-height: 20px;
+        transition: 0.2s ease-in;
+        @include media('>=LGdesktop') {
+            width: 380px;
+            height: 90px;
+            font-size: 14px;
+        }
+        &:focus {
+            border: 3px solid var(--acc-col-green) !important;
+            background: #ececec;
+        }
+    }
+    .text_field_orange {
+        width: 325px;
+        height: 90px;
+        background: #FFFFFF;
+        border: 3px solid #000000;
+        box-sizing: border-box;
+        border-radius: 10px;
+        margin-top: 10px;
+        text-indent: 15px;
+        resize: none;
+        font-size: 13px;
+        line-height: 20px;
+        transition: 0.2s ease-in;
+        @include media('>=LGdesktop') {
+            width: 380px;
+            height: 90px;
+            font-size: 14px;
+        }
+        &:focus {
+            border: 3px solid var(--acc-col-orange) !important;
+            background: #ececec;
+        }
+    }

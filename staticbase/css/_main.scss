@@ -1,0 +1,300 @@
+.section {
+    height: 100vh;
+    background: white;
+    &-wrapper {
+        height: 100vh;
+        &-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            &__logo_block {
+                &__logo {
+                    background: url('../media/index_images/Applogo.png');
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    width: 140px;
+                    height: 60px;
+                    margin-left: 30px;
+                    margin-top: 5px;
+                    @include media('>=LGdesktop') {
+                        width: 175px;
+                        height: 85px;
+                    }
+                }
+            }
+            .rest_block {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 400px;
+                margin-bottom: 6px;
+                @include media('>=LGdesktop') {
+                    width: 550px;
+                }
+                .list_models {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-right: 40px;
+                    @include media('>=LGdesktop') {
+                        margin-right: 20px;
+                    }
+                    &__notes {
+                        .link {
+                            font-family: 'Montserrat Alternates', sans-serif;
+                            font-style: normal;
+                            font-weight: bold;
+                            font-size: 20px;
+                            line-height: 29px;
+                            color: #000;
+                            text-decoration: underline rgb(53, 53, 53);
+                            @include media('>=LGdesktop') {
+                                font-size: 24px;
+                            }
+                        }
+                    }
+                    &__library {
+                        margin-left: 30px;
+                        .link {
+                            font-family: 'Montserrat Alternates', sans-serif;
+                            font-style: normal;
+                            font-weight: bold;
+                            font-size: 20px;
+                            line-height: 29px;
+                            color: #000;
+                            text-decoration: underline rgb(53, 53, 53);
+                            @include media('>=LGdesktop') {
+                                font-size: 24px;
+                            }
+                        }
+                    }
+                    &__desks {
+                        margin-left: 30px;
+                        .link {
+                            font-family: 'Montserrat Alternates', sans-serif;
+                            font-style: normal;
+                            font-weight: bold;
+                            font-size: 20px;
+                            line-height: 29px;
+                            color: #000;
+                            text-decoration: underline rgb(53, 53, 53);
+                            @include media('>=LGdesktop') {
+                                font-size: 24px;
+                            }
+                        }
+                    }
+                }
+            }
+            &__logout {
+                .logout {
+                    font-family: 'Montserrat', sans-serif;
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 19px;
+                    text-align: center;
+                    text-decoration: none;
+                    margin-left: 20px;
+                    color: #000;
+                    @include media('>=LGdesktop') {
+                        font-size: 24px;
+                        margin-left: 55px;
+                    }
+                }
+            }
+            &__login {
+                .login {
+                    font-family: 'Montserrat', sans-serif;
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 20px;
+                    text-align: center;
+                    color: black;
+                    text-decoration: none;
+                    margin-left: 20px;
+                    @include media('>=LGdesktop') {
+                        font-size: 24px;
+                        margin-left: 55px;
+                    }
+                }
+            }
+        }
+        &-middle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &__main {
+                width: 45%;
+                padding-left: 30px;
+                display: flex;
+                flex-direction: column;
+                &__text {
+                    height: 220px;
+                    .title {
+                        width: 100%;
+                        h1 {
+                            font-family: 'Montserrat Alternates', sans-serif;
+                            font-style: normal;
+                            font-weight: 800;
+                            font-size: 34px;
+                            line-height: 44px;
+                            font-weight: 900;
+                            @include media('>=LGdesktop') {
+                                font-size: 43px;
+                            }
+                        }
+                    }
+                    .subtitle {
+                        max-width: 75%;
+                        margin-top: 10px;
+                        p {
+                            font-family: 'Montserrat Alternates', sans-serif;
+                            font-style: normal;
+                            font-weight: 600;
+                            font-size: 17px;
+                            line-height: 21px;                        
+                            @include media('>=LGdesktop') {
+                                font-size: 21px;
+                                line-height: 23px;
+                            }
+                        }
+                    }
+                }
+                &__button {
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-start;
+                    margin-left: 20px;
+                    align-items: center;
+                    .start {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 250px;
+                        height: 55px;
+                        border: none;
+                        border-radius: 86px;
+                        text-decoration: none;
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        font-style: normal;
+                        font-weight: lighter;
+                        font-size: 20px;
+                        line-height: 22px;
+                        color: white;
+                        font-weight: 700;
+                        background: #4BCE1C;
+                        margin-top: 25px;
+                        @include media('>=LGdesktop') {
+                            width: 255px;
+                            height: 65px;
+                            font-size: 19px;
+                            margin-left: 75px;
+                        }
+                    }
+                }
+            }
+            &__image {
+                background: url('../media/index_images/image_index.png');
+                background-repeat: no-repeat;
+                background-size: cover;
+                width: 520px;
+                height: 520px;
+                @include media('>=LGdesktop') {
+                    width: 720px;
+                    height: 720px;
+                }
+            }
+        }
+    }
+}
+// // Dark
+// .dark_logout {
+//     background: url('../media/accent_icons/dark/light_border.png');
+//     background-repeat: no-repeat;
+//     background-size: contain;
+// }
+// .dark_logouttext {
+//     color: #fff;
+// }
+// .dark_titletext {
+//     color: #fff;
+// }
+// .dark_subtitle {
+//     color: #fff;
+// }
+// // logo
+// .dark_theme_red_logo {
+//     background: url('../media/accent_icons/dark/redLogo_ToolApp.png');
+// }
+// .dark_theme_orange_logo {
+//     background: url('../media/accent_icons/dark/orangeLogo_ToolApp.png');
+// }
+// .dark_theme_green_logo {
+//     background: url('../media/accent_icons/dark/greenLogo_ToolApp.png');
+// }
+// .dark_theme_light_blue_logo {
+//     background: url('../media/accent_icons/dark/blueLogo_ToolApp.png');
+// }
+
+// // Light
+// .light_logout {
+//     background: url('../media/index_images/border.png');
+//     background-repeat: no-repeat;
+//     background-size: contain;
+// }
+// .light_logouttext {
+//     color: #000;
+// }
+// .light_titletext {
+//     color: #000;
+// }
+// .light_subtitle {
+//     color: #000;
+// }
+// // logo
+// .light_theme_red_logo {
+//     background: url('../media/accent_icons/light/redLogo_ToolApp.png');
+// }
+// .light_theme_orange_logo {
+//     background: url('../media/accent_icons/light/orangeLogo_ToolApp.png');
+// }
+// .light_theme_green_logo {
+//     background: url('../media/accent_icons/light/greenLogo_ToolApp.png');
+// }
+// .light_theme_light_blue_logo {
+//     background: url('../media/accent_icons/light/blueLogo_ToolApp.png');
+// }
+// // accent color
+
+// // textlinks
+// .dark_red_textlink {
+//     color: var(--light-inputs) !important;
+//     text-decoration: var(--acc-col-red) underline;
+// }
+// .dark_orange_textlink {
+//     color: var(--light-inputs) !important;
+//     text-decoration: var(--acc-col-orange) underline;
+// }
+// .dark_green_textlink {
+//     color: var(--light-inputs) !important;
+//     text-decoration: var(--acc-col-green) underline;
+// }
+// .dark_light_blue_textlink {
+//     color: var(--light-inputs) !important;
+//     text-decoration: var(--acc-col-light-blue) underline;
+// }
+// .light_red_textlink {
+//     color: var(--light-elements) !important;
+//     text-decoration: var(--acc-col-red) underline;
+// }
+// .light_orange_textlink {
+//     color: var(--light-elements) !important;
+//     text-decoration: var(--acc-col-orange) underline;
+// }
+// .light_green_textlink {
+//     color: var(--light-elements) !important;
+//     text-decoration: var(--acc-col-green) underline;
+// }
+// .light_light_blue_textlink {
+//     color: var(--light-elements) !important;
+//     text-decoration: var(--acc-col-light-blue) underline;
+// }

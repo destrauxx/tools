@@ -1,0 +1,48 @@
+<mjml>
+  <mj-head>
+    <mj-font name='MuseoModerno' href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@600"></mj-font>
+    <mj-font name='Montserrat' href='https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600'></mj-font>
+  </mj-head>
+  <mj-body background-color='white' width='100%'>
+    <mj-section>
+      <mj-column>
+        <mj-text align='center' font-family='MuseoModerno' font-size='36px' font-weight='600'>
+          <p>
+            Tools
+          </p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section>
+      <mj-column>
+        <mj-text align='center' font-family='Montserrat' font-size='36px' font-weight='600'>
+          <p>
+            Verification letter
+          </p>
+        </mj-text>
+        <mj-text align='center' font-family='Montserrat' font-size='24px' font-weight='500'>
+          <p>
+            To verificate your account on ToolApp, click on the button below.
+          </p>
+        </mj-text>
+        <mj-button href="http://{{ domain }}{% 'activate' uidb64=uid token=token %}" background-color='#4bce1c' width='150px' height='25px'>
+          Verificate
+        </mj-button>
+      </mj-column>
+    </mj-section>
+    <mj-section>
+      <mj-column>
+        <mj-text align='center' font-family='Montserrat' font-size='18px' font-weight='500' padding='0'>
+          <p>
+            Thank you for using our service.
+          </p>
+        </mj-text>
+        <mj-text align='center' font-family='Montserrat' font-size='18px' font-weight='600' padding='0'>
+          <p>
+            2022, ToolsApp team
+          </p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

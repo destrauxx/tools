@@ -1,0 +1,95 @@
+.section-email_verification-complete {
+    height: 100vh;
+    &-wrapper {
+        height: 100vh;
+        position: relative;
+        &-navbar {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            &__toolsApp_logo {
+                background: url('../media/index_images/Applogo.png');
+                background-repeat: no-repeat;
+                background-size: contain;
+                width: 160px;
+                height: 45px;
+                margin-left: 15px;
+                @include media('>=LGdesktop') {
+                    width: 195px;
+                    height: 65px;
+                }
+            }
+        }
+        &-content_box {
+            width: 100vw;
+            height: 92vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &-wrapper {
+                flex-direction: row;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 1166px;
+                height: 362px;
+                &-info_block {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                    height: 288px;
+                    width: 362px;
+                    flex-direction: column;
+                    &-text_block {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        flex-direction: column;
+                        height: 123px;
+                        &__header {
+                            font-family: 'Montserrat Alternates', sans-serif;
+                            font-style: normal;
+                            font-weight: 600;
+                            font-size: 36px;
+                            line-height: 40px;
+                        }
+                        &__text {
+                            font-family: 'Montserrat Alternates', sans-serif;
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 24px;
+                            line-height: 33px;
+    
+                            width: 365px;
+                        }
+                    }
+                    &-button { 
+                        text-decoration: none;
+                        &__text {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            color: white;
+                            background-color: #4bce1c;
+                            height: 65px;
+                            width: 325px;
+                            border-radius: 50px;
+                            font-family: 'Montserrat Alternates', sans-serif;
+                            font-style: normal;
+                            font-weight: bold;
+                            font-size: 24px;
+                            line-height: 29px;
+                        }
+                    }
+                }
+                &__icon {
+                    background: url('../media/login_and_reg_images/email_verification.png');
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    width: 368px;
+                    height: 362px;
+                }
+            }
+        }
+    }
+}

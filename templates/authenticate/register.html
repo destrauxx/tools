@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Registration{% endblock title %}
+
+{% block content %}
+<section class="section-reg">
+    <div class="section-reg-wrapper">
+        <div class="section-reg-wrapper__box">
+            <div class="section-reg-wrapper__box__logo"></div>
+            <div class="section-reg-wrapper__box__main">
+                <div class="section-reg-wrapper__box__main__image"></div>
+                    <form class="blockreg_form" action="" method="post">        
+                        <h2 class="reg_text">Sign In</h2>
+                        {% if messages %}
+                            <div class="block">
+                                {% for message in messages %}
+                                <h1 class="text_email" {% if message.tags %}{% endif %}>{{ message }}!</h1>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        {% csrf_token %}
+                        <div class="username_wrapper">
+                            {{ form.username.errors }}
+                            {{ form.username }}
+                        </div>
+                        <div class="email_wrapper">
+                            {{ form.email.errors }}
+                            {{ form.email }}
+                        </div>
+                        <div class="password1_wrapper">
+                            {{ form.password1.errors }}
+                            {{ form.password1 }}
+                            <div class="checkbox"></div>
+                        </div>
+                        <div class="password2_wrapper">
+                            {{ form.password2.errors }}
+                            {{ form.password2 }}
+                            <div class="checkbox_2"></div>
+                        </div>
+                        <button class="submit">Sign In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    // user
+    document.getElementById("id_username").classList.add("user_fieldreg");
+    document.getElementById("id_username").placeholder = "Your Name";
+
+    // email
+    document.getElementById("id_email").classList.add("email_fieldreg");
+    document.getElementById("id_email").placeholder = "Your Email";
+
+    // password1
+    document.getElementById("id_password1").classList.add("password1_fieldreg");
+    document.getElementById("id_password1").placeholder = "Password";
+
+    // password2
+    document.getElementById("id_password2").classList.add("password2_fieldreg");
+    document.getElementById("id_password2").placeholder = "Confirm Password";
+
+    document.getElementById("id_password1").maxLength = "35"
+    document.getElementById("id_password2").maxLength = "35"
+
+    let password_1 = document.getElementById("id_password1")
+    let password_2 = document.getElementById("id_password2")
+    let togglePassword_1 = document.querySelector('.checkbox')
+    let togglePassword_2 = document.querySelector('.checkbox_2')
+
+    togglePassword_1.addEventListener('click', function(e) {
+        if (password_1.type == "password") {
+            password_1.type = "text"
+            togglePassword_1.classList.toggle('slash')
+        } else {
+            password_1.type = "password"
+            togglePassword_1.classList.remove('slash')
+        }
+    });
+    togglePassword_2.addEventListener('click', function(e) {
+        if (password_2.type == "password") {
+            password_2.type = "text"
+            togglePassword_2.classList.toggle('slash')
+        } else {
+            password_2.type = "password"
+            togglePassword_2.classList.remove('slash')
+        }
+    });
+</script>
+{% endblock content %}

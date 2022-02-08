@@ -1,0 +1,757 @@
+.section-userpage {
+    height: 100vh;
+    &-wrapper {
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+        &__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .left-section {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                #menuToggle_userpage {
+                    display: block;
+                    z-index: 1;
+                    -webkit-user-select: none;
+                    user-select: none;
+                    margin-left: 35px;
+                    margin-bottom: 0px;
+                    z-index: 10;
+                    @include media('>=LGdesktop') {
+                        margin-bottom: 15px;
+                    }
+                }
+                #menuToggle_userpage input {
+                    display: block;
+                    width: 40px;
+                    height: 38px;
+                    position: absolute;
+                    top: 8px;
+                    left: 32px;
+                    cursor: pointer;
+                    opacity: 0;
+                    z-index: 10000;
+                    -webkit-touch-callout: none;
+                    @include media('>=LGdesktop') {
+                        position: absolute;
+                        top: 11px;
+                    }
+                }
+                #menuToggle_userpage .line_userpage {
+                    display: block;
+                    width: 29px;
+                    height: 4px;
+                    margin-bottom: 5px;
+                    position: relative;
+                    border-radius: 3px;
+                    z-index: 10;
+                    transform-origin: 3px 0px;
+                    transition: transform 0.2s cubic-bezier(0.77,0.2,0.05,1.0),
+                    background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                    opacity 0.55s ease;
+                    @include media('>=LGdesktop') {
+                        width: 31px;
+                        height: 5px;
+                    }
+                }
+                #menuToggle_userpage span:first-child {
+                    transform-origin: 0% 0%;
+                }
+                #menuToggle_userpage span:nth-last-child(2) {
+                    transform-origin: 0% 100%;
+                }
+                #menuToggle_userpage input:checked ~ span {
+                    opacity: 1;
+                    transform: rotate(40deg) translate(11px, -2px);
+                    background: #000;
+                    @include media('>=LGdesktop') {
+                        transform: rotate(40deg) translate(12px, -2px);
+                    }
+                }
+                #menuToggle_userpage input:checked ~ span:nth-last-child(3) {
+                    opacity: 0;
+                    transform: rotate(0deg)     
+                        scale(0.2, 0.2);
+                }
+                #menuToggle_userpage input:checked ~ span:nth-last-child(2) {
+                    opacity: 1;
+                    transform: rotate(-40deg) translate(6px, 9px);
+                }
+                #menu {
+                    position: absolute;
+                    width: 200px;
+                    height: 100%;
+                    margin: -100px 0 0 -50px;
+                    padding: 50px;
+                    padding-top: 125px;
+                    list-style-type: none;
+                    transform-origin: 0 0;
+                    transform: translate(-100%, 0);
+                    transition: transform 0.5s;
+                    text-align: center;
+                    z-index: 1;
+                    @include media('>=LGdesktop') {
+                        width: 220px;
+                        height: 100%;                                                                                  
+                    }
+                }
+                #menuToggle_userpage input:checked ~ #menu {
+                    transform: scale(1.0, 1.0);
+                }
+                .block-links_userpage {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    margin-top: 10px;
+                    .homepage_userpage {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        cursor: pointer;
+                        transition: 0.3s ease-in-out;
+                        &_icon {
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            width: 24px;
+                            height: 24px;
+                            @include media('>=LGdesktop') {
+                                width: 33px;
+                                height: 33px;
+                            }
+                        }
+                        .link_homepage_userpage {
+                            text-decoration: none;
+                            font-size: 21px;
+                            font-family: 'Montserrat Alternates', sans-serif;
+                            text-align: center;
+                            font-weight: 500;
+                            letter-spacing: 0.1em;
+                            margin-left: 10px;
+                            transition: 0.5s;
+                            @include media('>=LGdesktop') {
+                                font-size: 23px;
+                            }
+                        }
+                    }
+                    .homepage_userpage:hover {
+                        opacity: 0.6;
+                    }
+                    .notes_text {
+                        margin-top: 15px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        cursor: pointer;
+                        transition: 0.3s ease-in-out;
+                        &_icon {
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            width: 24px;
+                            height: 24px;
+                            @include media('>=LGdesktop') {
+                                width: 29px;
+                                height: 29px;                                                                                   
+                            }
+                        }
+                        .link_notes_text {
+                            text-decoration: none;
+                            font-size: 21px;
+                            font-family: 'Montserrat Alternates', sans-serif;
+                            text-align: center;
+                            margin-left: 10px;
+                            transition: 0.5s;
+                            font-weight: 500;
+                            @include media('>=LGdesktop') {
+                                font-size: 23px;
+                            }
+                        }
+                    }
+                    .notes_text:hover {
+                        opacity: 0.6;
+                    }
+                }
+                .bottom_userpage {
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                    position: absolute;
+                    bottom: 130px;
+                    left: -10px;
+                    @include media('>=LGdesktop') {
+                        bottom: 150px;
+                    }
+                    .username_userpage {
+                        margin-left: 35px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        cursor: pointer;
+                        transition: 0.3s ease-in-out;
+                        .profile_name_userpage {
+                            font-family: 'Montserrat Alternates', sans-serif;
+                            font-weight: 600;
+                            font-size: 14px;
+                            text-align: center;
+                            letter-spacing: 0.1em;
+                            color: #fff;
+                            transition: 0.5s;
+                        }
+                        &_icon {
+                            background: url('../media/create_and_read_images/user_icon.png');
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            width: 27px;
+                            height: 27px;
+                            margin-left: 3px;
+                        }
+                    }
+                    .username_userpage:hover {
+                        opacity: 0.6;
+                    }
+                    .logout_userpage {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        cursor: pointer;
+                        transition: 0.3s ease-in-out;
+                        &_text {
+                            font-family: 'Montserrat Alternates', sans-serif;
+                            font-style: normal;
+                            font-weight: 600;
+                            font-size: 14px;
+                            text-align: center;
+                            letter-spacing: 0.1em;
+                            color: #fff;
+                            transition: 0.6s;
+                            text-decoration: none;
+                        }
+                        &_icon {
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            width: 27px;
+                            height: 27px;
+                            margin-left: 3px;
+                        }
+                    }
+                    .logout_userpage:hover {
+                        opacity: 0.6;
+                    }
+                }
+                .logo_toolApp_userpage {
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    width: 160px;
+                    height: 50px;
+                    margin-left: 20px;
+                    margin-top: 6px;
+                    @include media('>=LGdesktop') {
+                        width: 195px;
+                        height: 73px;
+                        margin-top: 5px;
+                    }
+                }
+            }
+            .right-section {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 5px;
+                margin-right: 10px;
+                #customization {
+                    display: block;
+                    position: absolute;
+                    top: 15px;
+                    right: 20px;
+                    z-index: 1;
+                    -webkit-user-select: none;
+                    user-select: none;
+                }
+                
+                #customization .checkbox {
+                    display: block;
+                    width: 40px;
+                    height: 32px;
+                    position: absolute;
+                    top: -1px;
+                    left: -5px;
+                    cursor: pointer;
+                    opacity: 0;
+                    z-index: 2;
+                    -webkit-touch-callout: none;
+                }
+                #customization span:first-child {
+                    transform-origin: 0% 0%;
+                }
+                
+                #customization span:nth-last-child(2) {
+                    transform-origin: 0% 100%;
+                }
+                
+                #customization .checkbox:checked~span {
+                    opacity: 1;
+                    transform: rotate(45deg) translate(-2px, -1px);
+                    background: #232323;
+                }
+                
+                #customization .checkbox:checked~span:nth-last-child(3) {
+                    opacity: 0;
+                    transform: rotate(0deg) scale(0.2, 0.2);
+                }
+                
+                #customization .checkbox:checked~span:nth-last-child(2) {
+                    opacity: 1;
+                    transform: rotate(-45deg) translate(0, -1px);
+                }
+                #customization .checkbox:checked~ul {
+                    transform: scale(1.0, 1.0);
+                    opacity: 1;
+                }
+                .customization_btn {
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    width: 30px;
+                    height: 30px;
+                }          
+                #menu {
+                    position: absolute;
+                    width: 280px;
+                    height: 250px;
+                    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
+                    margin: -30px 0 10px 0;
+                    right: -50px;
+                    border-radius: 10px;
+                    list-style-type: none;
+                    -webkit-font-smoothing: antialiased;
+                    transform-origin: 0% 0%;
+                    transform: translate(100%, 0);
+                    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+                    .top {
+                        display: flex;
+                        justify-content: space-evenly;
+                        align-items: center;
+                        margin-top: 4px;
+                        .cust_text {
+                            font-style: normal;
+                            font-weight: 600;
+                            font-size: 13px;
+                            line-height: 20px;
+                            text-align: center;
+                            font-family: 'Montserrat Alternates', sans-serif;
+                        }
+                        .customization_btn_close {
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            width: 28px;
+                            height: 28px;
+                        }   
+                    }
+                    .middle {
+                        display: flex;
+                        flex-direction: column;
+                        margin-top: 20px;
+                        .changecustom_form {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+                            .select1 {
+                                position: relative;
+                                display: flex;
+                                width: 10em;
+                                height: 3em;
+                                border-radius: .45em;
+                                overflow: hidden;
+                                &::after {
+                                    content: '\25BC';
+                                    position: absolute;
+                                    top: 0;
+                                    right: 0;
+                                    padding: 1em;
+                                    background: #2b2e2e;
+                                    color: #fff;
+                                    transition: .25s all ease;
+                                    pointer-events: none;
+                                }
+                                &:hover::after {
+                                    color: var(--dark-inputs);
+                                }
+                                .theme_selector {
+                                    appearance: none;
+                                    outline: 0;
+                                    border: 0;
+                                    box-shadow: none;
+                                    flex: 1;
+                                    padding: 0 1em;
+                                    color: #fff;
+                                    background: #5c6664;
+                                    background-image: none;
+                                    cursor: pointer;
+                                    &::-ms-expand {
+                                        display: none;
+                                      }
+                                  }
+                                  option {
+                                      border-radius: 0.45em;
+                                  }
+                            }
+                            .select2 {
+                                position: relative;
+                                display: flex;
+                                width: 10em;
+                                height: 3em;
+                                border-radius: .45em;
+                                overflow: hidden;
+                                margin-top: 15px;
+                                &::after {
+                                    content: '\25BC';
+                                    position: absolute;
+                                    top: 0;
+                                    right: 0;
+                                    padding: 1em;
+                                    background: #2b2e2e;
+                                    color: #fff;
+                                    transition: .25s all ease;
+                                    pointer-events: none;
+                                }
+                                &:hover::after {
+                                    color: var(--dark-inputs);
+                                }
+                                .accent_color_selector {
+                                    appearance: none;
+                                    outline: 0;
+                                    border: 0;
+                                    box-shadow: none;
+                                    flex: 1;
+                                    padding: 0 1em;
+                                    color: #fff;
+                                    background: #5c6664;
+                                    background-image: none;
+                                    cursor: pointer;
+                                    &::-ms-expand {
+                                        display: none;
+                                      }
+                                  }
+                            }
+                            .submit_changecust {
+                                width: 139px;
+                                height: 35px;
+                                border-radius: 77px;
+                                color: #fff;
+                                font-family: 'Montserrat Alternates';
+                                font-size: 14px;
+                                font-weight: 700;
+                                border: none;
+                                margin-top: 15px;
+                            }
+                        }
+                    }
+                } 
+            }
+        }
+        .middle_section {
+            padding: 0 0 0 30px;
+            width: 50%;
+            margin: -5px;
+            @include media('>=LGdesktop') {
+                padding: 0 0 0 30px;
+                margin: 0;
+            }
+            .section_image {
+                .div {
+                    width: 250px;
+                    height: 250px;
+                    border-radius: 50%;
+                    @include media('>=LGdesktop') {
+                        width: 350px;
+                        height: 350px;
+                    }
+                }
+                .div:hover {
+                    background: rgba(0, 0, 0, 0.6);
+                }
+                .default_profilepic {
+                    opacity: 1;
+                    background-color: transparent;
+                    transition: background-color 0.2s linear;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    width: 250px;
+                    height: 250px;
+                    @include media('>=LGdesktop') {
+                        width: 350px;
+                        height: 350px;
+                    }
+                }
+                .profile_pic {
+                    transition: opacity 0.2s linear;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    width: 250px;
+                    height: 250px;
+                    @include media('>=LGdesktop') {
+                        width: 350px;
+                        height: 350px;
+                    }
+                }
+                .profile_pic:hover {
+                    opacity: 0.7;
+                }
+                .change_image_form {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: flex-start;
+                    width: 100%;
+                    padding: 15px 0;
+                    @include media('>=LGdesktop') {
+                        padding: 25px 0;
+                    }
+                    ::-webkit-file-upload-button {
+                        background: var(--dark-inputs);
+                        color: #fff;
+                        padding: 0.8rem 0.8rem 0.8rem 1.3rem;
+                        border-radius: 50px;
+                        border: none;
+                        font-size: 12px;
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        cursor: pointer;
+                        position: relative;
+                        @include media('>=LGdesktop') {
+                            padding: 1.1rem 1.1rem 1.1rem 1.6rem;
+                            font-size: 13px;
+                        }
+                    }
+                    #id_new_image {
+                        font-size: 14px;
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        font-weight: 600;
+                        letter-spacing: 0.2px;
+                        position: relative;
+                        cursor: pointer;
+                        @include media('>=LGdesktop') {
+                            font-size: 16px;
+                        }
+                    }
+                    #id_new_image::before {
+                        content: '';
+                        width: 16px;
+                        height: 15px;
+                        background: url('../media/create_and_read_images/camera.png');
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        position: absolute;
+                        top: 52%;
+                        left: 4%;
+                        transform: translate(-50%, -50%);
+                        z-index: 1;
+                        @include media('>=LGdesktop') {
+                            width: 20px;
+                            height: 20px;
+                            left: 4%;
+                            top: 50%;
+                        }
+                    }
+                    .change_image_btn {
+                        color: #fff;
+                        padding: 0.8rem;
+                        border-radius: 50px;
+                        border: none;
+                        font-size: 14px;
+                        margin-top: 10px;
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        @include media('>=LGdesktop') {
+                            padding: 1.1rem;
+                            font-size: 15px;
+                        }
+                    }
+                }
+            }
+            .section_stats {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                padding: 10px 0;
+                .title {
+                    .username_greeting {
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 34px;
+                        text-align: center;
+                        @include media('>=LGdesktop') {
+                            font-size: 43px;
+                        }
+                    }
+                }
+                .subtitle {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    .notes_count {
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 17px;
+                        line-height: 33px;
+                        text-align: center;
+                        margin-top: 10px;
+                        @include media('>=LGdesktop') {
+                            font-size: 20px;
+                        }
+                    }
+                    .col_count {
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 17px;
+                        line-height: 33px;
+                        text-align: center;
+                        @include media('>=LGdesktop') {
+                            font-size: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+// Light El
+
+.light_notes_count {
+    color: #000 !important;
+}
+
+.light_col_count {
+    color: #000 !important;
+}
+.light_username_greeting {
+    color: #000 !important;
+}
+
+.light__lineuserpage {
+    background-color: #000 !important;
+}
+.light__settings {
+    background: url('../media/create_and_read_images/black_settings.png');
+}
+.light__closecust {
+    background: url('../media/accent_icons/light/cross.png');
+}
+.light__custmenu {
+    background-color: #ffffff;
+}
+.light_cust_text {
+    color: #000;
+}
+.light__field_text {
+    color: #000;
+}
+.light_bgburgermenu {
+    background-color: #a3a3a3 !important;
+    border: 1px solid #a3a3a3;
+}
+.light_notesicon {
+    background: url('../media/accent_icons/light/notesicon.png');
+}
+.light_homepageuserpageicon {
+    background: url('../media/accent_icons/light/Homelighticon.png');
+} 
+.light__link_notes {
+    color: #000 !important;
+}
+.light__link_homepage {
+    color: #000 !important;
+}
+.light_logout_icon {
+    background: url('../media/accent_icons/light/black_iconlogout.png');
+}
+.light_logout_text {
+    color: #000 !important;
+}
+
+// Dark El
+.dark_notes_count {
+    color: var(--dark-elements) !important;
+}
+.dark_col_count {
+    color: var(--dark-elements) !important;
+}
+.dark_username_greeting {
+    color: var(--dark-elements) !important;
+}
+.dark__lineuserpage {
+    background-color: var(--dark-elements) !important;
+}
+.dark__settings {
+    background: url('../media/dark_theme_images/white_settings.png');
+}
+.dark__closecust {
+    background: url("../media/accent_icons/dark/cross.png");
+    opacity: 0.85;
+}
+.dark__custmenu {
+    background-color: var(--dark-bg) !important;
+}
+.dark_cust_text {
+    color: var(--dark-elements) !important;
+}
+.dark__field_text {
+    color: var(--dark-elements) !important;
+}
+.dark_bgburgermenu {
+    background-color: #525252 !important;
+    border: 1px solid #525252;
+}
+.dark_notesicon {
+    background: url('../media/accent_icons/dark/notesicon.png');
+}
+.dark_homepageuserpageicon {
+    background: url('../media/accent_icons/dark/Homedarkicon.png');
+}
+.dark__link_notes {
+    color: var(--light-inputs) !important;
+}
+.dark__link_homepage {
+    color: var(--light-inputs) !important;
+}
+.dark_logout_icon {
+    background: url('../media/accent_icons/dark/white_iconlogout.png');
+}
+.dark_logout_text {
+    color: var(--light-inputs ) !important;
+}
+
+
+// Accent color
+.red_btn_changeimg {
+    background-color: var(--acc-col-red) !important;
+}
+.orange_btn_changeimg {
+    background-color: var(--acc-col-orange) !important;
+}
+.light_blue_btn_changeimg {
+    background-color: var(--acc-col-light-blue) !important;
+}
+.green_btn_changeimg {
+    background-color: var(--acc-col-green) !important;
+}
+.red_btn_changeusercust {
+    background-color: var(--acc-col-red) !important;
+}
+.orange_btn_changeusercust {
+    background-color: var(--acc-col-orange) !important;
+}
+.light_blue_btn_changeusercust {
+    background-color: var(--acc-col-light-blue) !important;
+}
+.green_btn_changeusercust {
+    background-color: var(--acc-col-green) !important;
+}

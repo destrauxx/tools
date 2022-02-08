@@ -1,0 +1,9 @@
+<div class='create_collection_form {{user_info.theme}}_inputs' hx-target="#collections_list" hx-swap="beforeend">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button class="button_collection {{user_info.theme}}_inputs" type="submit" hx-post="{% url 'create_collection' %}">
+            <div class='send_icon'></div>
+        </button>
+    </form>
+</div>

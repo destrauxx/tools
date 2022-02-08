@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}{{user.username}} page{% endblock title %}
+
+{% block content %}
+    <div class="section-userpage {{ user_info.theme }}_bg">
+        <div class="section-userpage-wrapper">
+            <div class="section-userpage-wrapper__header">
+                <div class="left-section">
+                    <div title="Menu" id="menuToggle_userpage">
+                        <input type="checkbox">
+                        <span class="line_userpage {{ user_info.theme }}__lineuserpage"></span>
+                        <span class="line_userpage {{ user_info.theme }}__lineuserpage"></span>
+                        <span class="line_userpage {{ user_info.theme }}__lineuserpage"></span>
+                        <div id="menu" class="{{ user_info.theme }}_bgburgermenu">
+                            <div class="block-links_userpage">
+                                <div class="homepage_userpage">
+                                    <div class="homepage_userpage_icon {{ user_info.theme }}_homepageuserpageicon"></div>
+                                    <a class="link_homepage_userpage {{ user_info.theme }}__link_homepage" href='/'>Homepage</a>
+                                </div>
+                                <div class="notes_text">
+                                    <div class="notes_text_icon {{ user_info.theme }}_notesicon"></div>
+                                    <a class="link_notes_text {{ user_info.theme }}__link_notes" href='/notes/read/'>Notes</a>
+                                </div>
+                            </div>
+                            <div class="bottom_userpage">
+                                <div class="logout_userpage">
+                                    <a href="/auth/logout" class="logout_userpage_text {{ user_info.theme }}_logout_text">Log out</a>
+                                    <div class="logout_userpage_icon {{ user_info.theme }}_logout_icon"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="logo_toolApp_userpage {{user_info.theme}}_theme_{{user_info.accent_color}}_logo"></div>
+                </div>
+                <div class="right-section">
+                    <div id="customization">
+                        <input class="checkbox" type="checkbox" />
+                        <div class="customization_btn {{ user_info.theme }}__settings"></div>
+                        <ul id="menu" class="{{ user_info.theme }}__custmenu">
+                            <div class="top">
+                                <h4 class="cust_text {{user_info.theme}}_cust_text">Customization</h4>
+                                <div class="customization_btn_close {{ user_info.theme }}__closecust"></div>
+                            </div>
+                            <div class="middle">
+                                <form class="changecustom_form" action="" method="post">
+                                    {% csrf_token %}
+                                    
+                                    <div class="select1">
+                                        {{ form_customization.theme }}
+                                    </div>
+
+                                    <div class="select2">
+                                        {{ form_customization.accent_color }}
+                                    </div>
+                                    <button class="submit_changecust {{ user_info.accent_color }}_btn_changeusercust" type="submit">Save</button>
+                                </form>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="middle_section">
+                <div class="section_image">
+                    {% if user_info.profile_image %}
+                        <div class="div">
+                            <img class="profile_pic" src="{{ user_info.profile_image.url}}" alt="{{ user }}">
+                        </div>
+                    {% else %}
+                        <div class="div">
+                            <img class="default_profilepic" src="{% static 'media/profile_images/default_avatar/default_avatar.png' %}" alt="">
+                        </div>
+                    {% endif %}
+                    <form class="change_image_form" action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="uploadPic">
+                            {{ form_update_image.new_image }}
+                        </div>
+
+                        <button class="change_image_btn {{ user_info.accent_color }}_btn_changeimg" type="submit">Change Image</button>
+                    </form>
+                </div>
+                <div class="section_stats">
+                    <div class="title">
+                        <h1 class="username_greeting {{ user_info.theme }}_username_greeting">Hi, {{ user.username }}!</h1>
+                    </div>
+                    <div class="subtitle">
+                        <h4 class="notes_count {{ user_info.theme }}_notes_count">Notes count - {{ user_notes.count }}</h4>
+                        <h4 class="col_count {{ user_info.theme }}_col_count">Collection count - {{ user_collections.count }}</h4>
+                        <h4 style="padding-top: 20px;" class="col_count {{ user_info.theme }}_col_count">Days since sign in - {{ joined }}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    document.getElementById("id_theme").classList.toggle('theme_selector')
+    document.getElementById("id_accent_color").classList.toggle('accent_color_selector')
+
+    document.getElementById("id_new_image").classList.toggle('{{ user_info.theme }}__field_text')
+</script>
+{% endblock %}

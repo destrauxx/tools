@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Log In{% endblock title %}
+
+
+{% block content %}
+<section class="section-login">
+    <div class="section-login-wrapper">
+        <div class="section-login-wrapper-box">
+            <div class="section-login-wrapper-box__logo"></div>
+            <div class="section-login-wrapper-box__main">
+                <form class="login-form" action="{% url 'login' %}" method="post" autocomplete="off">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="login_message">
+                                <h1 class="login_message_text">{{ message }}</h1>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <h2 class="login-form__text">Log In</h2>
+                    {% csrf_token %}
+                    <div class="form_wrapper">
+                        {% if form.errors %}
+                        <ul class="errorlist">
+                            <li>Please enter a correct username and password. Note that both fields may be case-sensitive.</li>
+                        </ul>
+                        {% endif %}
+                        {{ form.username }}
+                        <div class="password_block">
+                            {{ form.password }}
+                            <div class="checkbox"></div>
+                        </div>
+                    </div>
+                    <div class="forgot">
+                        <a class="forgot_password" href="/auth/reset_password/">Forgot Password?</a>
+                    </div>
+                    <button class="submit">Log In</button>
+                </form>
+                <div class="section-login-wrapper-box__main__register-link">
+                    <a class="register" href="/auth/register/">Create an account</a>
+                    <span id="arrow"></span>
+                </div>
+                <div class="section-login-wrapper-box__main__image"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+
+    p = document.querySelector('p');
+    // username
+    document.getElementById("id_username").classList.add("user_field");
+    document.getElementById("id_username").placeholder = "Your Name or Email";
+
+    // password
+    document.getElementById("id_password").classList.add("password_field");
+    document.getElementById("id_password").placeholder = "Password";
+
+    let password1 = document.getElementById("id_password")
+    let togglePassword = document.querySelector('.checkbox')
+
+    togglePassword.addEventListener('click', function(e) {
+        if (password1.type == "password") {
+            password1.type = "text"
+            togglePassword.classList.toggle('slash')
+        } else {
+            password1.type = "password"
+            togglePassword.classList.remove('slash')
+        }
+    });
+    document.getElementById("id_password").maxLength = "35"
+
+    
+</script>
+{% endblock content %}

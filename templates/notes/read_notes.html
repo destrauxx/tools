@@ -1,0 +1,279 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Notes{% endblock title %}
+
+{% block content %}
+    <section class="section-read {{ user_info.theme }}_bg">
+        <div class="section-read-wrapper">
+        {% if messages %}
+            {% for message in messages %}
+              <div class="alert {{ user_info.theme }}_alert">
+                <div class="top">
+                    <button class="cross {{ user_info.theme }}_c"></button>
+                </div>
+                <div class="bottom">
+                    <h1 class="error_text {{ user_info.theme }}_errortext">{{ message }}</h1>
+                </div>
+              </div>
+            {% endfor %}
+        {% endif %}
+            <div class="section-read-wrapper__header">
+                <div class="left-section">
+                    <div title="Menu" id="menuToggle">
+                        <input type="checkbox">
+                        <span class="line {{user_info.theme}}_line"></span>
+                        <span class="line {{user_info.theme}}_line"></span>
+                        <span class="line {{user_info.theme}}_line"></span>
+                        <div id="menu" class="{{ user_info.theme }}_bgburgermenu">
+                            <div class="block-links_r">
+                                <div class="homepage_r">
+                                    <div class="homepage_r_icon {{ user_info.theme }}_homepageuserpageicon"></div>
+                                    <a class="link_homepage_r {{ user_info.theme }}__link_homepage" href='/'>Homepage</a>
+                                </div>
+                                <div class="read_r">
+                                    <div class="read_r_icon {{ user_info.theme }}_notesicon"></div>
+                                    <a class="link_read_r  {{ user_info.theme }}__link_notes" href='/notes/read/'>Notes</a>
+                                </div>
+                            </div>
+                            <div class="bottom_r">
+                                <div class="username_r">
+                                    <a href="/auth/profile/" class="profile_name_r {{ user_info.theme }}_logout_text">{{ user.username }}</a>
+                                    {% if user_info.profile_image %}
+                                        <img style="border-radius: 50%;" src="{{ user_info.profile_image.url}}" alt="{{ profile }}" width="50px" height="50px">
+                                    {% else %}
+                                        <img src="{% static 'media/profile_images/default_avatar/default_avatar.png' %}" alt="" width="50px" height="50px">
+                                    {% endif %}
+                                </div>
+                                <div class="logout_r">
+                                    <a href="/auth/logout" class="logout_r_text {{ user_info.theme }}_logout_text">Log out</a>
+                                    <div class="logout_r_icon {{ user_info.theme }}_logout_icon"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="logo_toolApp {{user_info.theme}}_theme_{{user_info.accent_color}}_logo"></div>
+                </div>
+                <div class="right-section">
+                    <div class="search-block">
+                        <form method="GET">
+                            <input class="search {{user_info.theme}}_inputs" maxlength="28" type="text" name="search-input" placeholder="Enter a note name to search" autocomplete="off">
+                            <button class="search-btn {{user_info.theme}}_search" type="submit"></button>
+                        </form>
+                    </div>
+                    <button class="create-block {{ user_info.theme }}_create-block" type='button' hx-get="{% url 'create_note' %}" hx-target='#content_body' class="create-block" hx-swap='beforeend'>
+                        <span class="plus {{user_info.theme}}_plus"></span>
+                        <span class="create-block_text {{user_info.theme}}_elems">Create a new note</span>
+                    </button>
+                </div>
+            </div>
+            <div class="section-read-wrapper__main">
+                <div class="section-read-wrapper__main__notes_block">
+                    <div class='bottom_note_page'>
+                        <div class="notes_block">
+                            {% if selected_collection %}
+                                <div class="pagination">
+                                    {% if prev > 0 %}
+                                        <a class="prev {{user_info.theme}}_arrow" href="?page={{prev}}&collection={{selected_collection}}"></a>
+                                    {% endif %}
+                                    {% for page in pages_count_list %}
+                                        {% if page == current_page %}
+                                            <a class="page current {{user_info.accent_color}}_accent_text {{user_info.accent_color}}_border" href="?page={{page}}&collection={{selected_collection}}">{{page}}</a>
+                                        {% else %}
+                                            <a class="page {{user_info.theme}}_elems" href="?page={{page}}&collection={{selected_collection}}">{{page}}</a>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if next <= pages_count %}
+                                        <a class="next {{user_info.theme}}_arrow" href="?page={{next}}&collection={{selected_collection}}"></a>
+                                    {% endif %}
+                                </div>
+                            {% elif add_mode_collection %}
+                                <div class="pagination">
+                                    {% if prev > 0 %}
+                                        <a class="prev {{user_info.theme}}_arrow" href="?page={{prev}}&add_mode_collection={{add_mode_collection}}"></a>
+                                    {% endif %}
+                                    {% for page in pages_count_list %}
+                                        {% if page == current_page %}
+                                            <a class="page current {{user_info.accent_color}}_accent_text {{user_info.accent_color}}_border" href="?page={{page}}&add_mode_collection={{add_mode_collection}}">{{page}}</a>
+                                        {% else %}
+                                            <a class="page {{user_info.theme}}_elems" href="?page={{page}}&add_mode_collection={{add_mode_collection}}">{{page}}</a>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if next <= pages_count %}
+                                        <a class="next {{user_info.theme}}_arrow" href="?page={{next}}&add_mode_collection={{add_mode_collection}}"></a>
+                                    {% endif %}
+                                </div>
+                            {% else %}
+                                <div class="pagination">
+                                    {% if prev > 0 %}
+                                        <a class="prev {{user_info.theme}}_arrow" href="?page={{prev}}"></a>
+                                    {% endif %}
+                                    {% for page in pages_count_list %}
+                                        {% if page == current_page %}
+                                            <a class="page current {{user_info.accent_color}}_accent_text {{user_info.accent_color}}_border" href="?page={{page}}">{{page}}</a>
+                                        {% else %}
+                                            <a class="page {{user_info.theme}}_elems" href="?page={{page}}">{{page}}</a>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if next <= pages_count %}
+                                        <a class="next {{user_info.theme}}_arrow" href="?page={{next}}"></a>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                            <div id="notes" class="notes">
+                                {% if notes_list %}
+                                    {% for note in notes_list %}
+                                        {% if add_mode_collection %}
+                                            <a class="note" href="{% url 'add_note_to_collection' collection_pk=add_mode_collection note_pk=note.id %}">
+                                                <div class="note_top">
+                                                    <div class="note_header">
+                                                        <h1 class="header {{user_info.theme}}_elems">{{ note.header }}</h1>
+                                                    </div>
+                                                    <div class="note_date">
+                                                        <h6 class="date {{user_info.accent_color}}_accent_text">{{ note.date|date:"d-m-Y" }}</h6>
+                                                    </div>
+                                                </div>
+                                                <div class="note_middle">
+                                                    <p class="text {{user_info.theme}}_elems">{{ note.text }}</p>
+                                                </div>                                          
+                                            </a>
+                                        {% else %}
+                                            <div class="note {{user_info.theme}}_bg">
+                                                <div class="note_top">
+                                                    <div class="note_header">
+                                                        <h1 class="header {{user_info.theme}}_elems">{{ note.header }}</h1>
+                                                    </div>
+                                                    <div class="note_date">
+                                                        <h6 class="date {{user_info.accent_color}}_accent_text">{{ note.date|date:"d-m-Y" }}</h6>
+                                                    </div>
+                                                </div>
+                                                <div class="note_middle">
+                                                    <p class="text {{user_info.theme}}_elems">{{ note.text }}</p>
+                                                </div>
+                                                <div class="note_bottom">
+                                                    <a href='/notes/mark/{{note.id}}' class="mark">
+                                                        {% if note.is_important != True %}
+                                                            <div id="marker_button" class='{{user_info.theme}}_marker'>
+                                                            </div>
+                                                        {% else %}
+                                                            <div id="marker_button_remove" class='{{user_info.theme}}_{{user_info.accent_color}}_marker'>
+                                                            </div>
+                                                        {% endif %}
+                                                    </a>
+                                                    <div class="upd_del">
+                                                        <button hx-get="{% url 'edit_note' note.id %}" hx-swap="beforeend" hx-target="#content_body" class="update_btn {{user_info.theme}}_update"></button>
+                                                        <button hx-get="{% url 'delete_note' note.id %}" hx-swap="beforeend" hx-target="#content_body" class="del_btn {{user_info.theme}}_delete"></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="empty_notes_block">
+                                        <h1 class='{{user_info.theme}}_elems'>You have got no notes</h1>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="collections">
+                            <span class='notes_collection_separator {{user_info.theme}}_elems_bg'></span>
+                            <div class="your_collections">
+                                <h1 class='your_collections_header {{user_info.theme}}_elems'>Your collections:</h1>
+                                <div id='collections_list'>
+                                {% for collection in collections %}
+                                    {% if collection.id == selected_collection or collection.id == add_mode_collection %}
+                                        <div class='selected collection {{user_info.accent_color}}_bg_collection'>
+                                            <div class="collection_info">
+                                                <div class='collection_image {{user_info.theme}}_collection'></div>
+                                                <p class='collection_name {{user_info.theme}}_elems'>{{collection.name}}</p>
+                                            </div>
+                                            <div class="collection_more">
+                                                <button onclick="openCollectionMoreMenu()" class='collection_more_button'><div class='image {{user_info.theme}}_more'></div></button>
+                                                <div class="collection_more_dropdown {{user_info.theme}}_bg">
+                                                    <a href='/notes/read?page=1&add_mode_collection={{collection.id}}' class="add_notes_to_collection_btn_wrapper">
+                                                        <div class='add_notes_to_collection_btn {{user_info.theme}}_miniplus'></div><p class='{{user_info.theme}}_elems'>Add notes</p>
+                                                    </a>
+                                                    <button 
+                                                    type="button"
+                                                    hx-get="{% url 'edit_collection' collection.pk %}"
+                                                    hx-target="#content_body"
+                                                    hx-swap="beforeend"
+                                                    class="rename_collection_btn_wrapper {{ user_info.theme }}_rename_col_btn">
+                                                        <div class='rename_collection_btn {{user_info.theme}}_update'></div><p class='{{user_info.theme}}_elems'>Rename</p>
+                                                    </button>
+                                                    <button 
+                                                        type="button"
+                                                        hx-get="{% url 'delete_collection' collection.pk %}"
+                                                        hx-swap="beforeend"
+                                                        hx-target="#content_body"
+                                                        class="delete_collection_btn_wrapper {{ user_info.theme }}_delete_col_btn">
+                                                        <div class='delete_collection_btn {{user_info.theme}}_delete'></div><p class='{{user_info.theme}}_elems'>Delete</p>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <a href='/notes/read/?page={{current_page}}&collection={{collection.id}}' class='collection'>
+                                            <div class="collection_info">
+                                                <div class='collection_image {{user_info.theme}}_collection'></div>
+                                                <p class='collection_name {{user_info.theme}}_elems'>{{collection.name}}</p>
+                                            </div>
+                                        </a>
+                                    {% endif %}
+                                {% endfor %}
+                                </div>
+                                
+                                <hr class="hr-2 {{user_info.theme}}_elems_border">
+                                <div id="create_collections_forms"></div>
+                                <button class='add_collection_button {{user_info.theme}}_bg {{user_info.theme}}_elems' 
+                                        type="button" 
+                                        hx-get="{% url 'create_collection_form' %}" 
+                                        hx-target="#create_collections_forms" 
+                                        hx-swap="beforeend">
+                                    <div class='plus_image {{user_info.theme}}_plus'></div>Add new collection
+                                </button> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<script name='read_notes'>
+    let cross_read = document.querySelector('.cross');
+    let alertblock = document.querySelector('.alert');
+
+    cross_read.addEventListener("click", (e) => {
+        alertblock.classList.toggle('remove');
+    });
+
+    function openCollectionMoreMenu() {
+        document.querySelector(".collection_more_dropdown").classList.toggle("show");
+    }
+
+    function hideCollectionAddButton() {
+        document.querySelector('.add_collection_button').style.display = 'flex'
+    }
+
+    function hideCollectionCreateForm() {
+        document.querySelector('.create_collection_form').remove()
+        document.querySelector('.add_collection_button').style.display = 'flex'
+    }
+    document.body.appendChild(form);
+    window.onclick = function(event) {
+        if (!event.target.matches('.collection_more_button')) {
+            var dropdowns = document.querySelector(".collection_more_dropdown");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+
+</script>
+{% endblock %}
+create_collection_form 

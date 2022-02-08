@@ -1,0 +1,1244 @@
+.section-read {
+    height: 100vh;
+    &-wrapper {
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+        .alert {
+            width: 450px;
+            height: 60px;
+            border: none;
+            border-radius: 10px;    
+            position: absolute;
+            top: 7%;
+            right: -15%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation: animate 0.6s ease-in;
+            z-index: 1000;
+            @include media('>=LGdesktop') {
+                top: 7%;
+                right: -11%;
+            }
+            .top {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                width: 100%;
+                .cross {
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    width: 18px;
+                    height: 18px;
+                    border: none;
+                    margin-right: 5px;
+                    margin-top: 10px;
+                    @include media('>=LGdesktop') {
+                        width: 23px;
+                        height: 23px;
+                    }
+                }
+            }
+            .bottom {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .error_text {
+                    font-size: 16px;
+                    font-family: 'Montserrat Alternates', sans-serif;
+                    text-align: center;
+                    letter-spacing: 0.1em;
+                    margin-left: 10px;
+                    margin-bottom: 25px;
+                }
+            }
+        }
+        @keyframes animate {
+            0% {
+                top: -4%;
+            }
+            100% {
+                top: 8%;
+            }
+        }
+        .remove {
+            display: none;
+        }
+        &__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .left-section {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                #menuToggle {
+                    display: block;
+                    z-index: 1;
+                    -webkit-user-select: none;
+                    user-select: none;
+                    margin-left: 35px;
+                    margin-bottom: 0px;
+                    @include media('>=LGdesktop') {
+                        margin-bottom: 15px;
+                    }
+                }
+                #menuToggle input {
+                    display: block;
+                    width: 40px;
+                    height: 32px;
+                    position: absolute;
+                    top: 8px;
+                    left: 32px;
+                    cursor: pointer;
+                    opacity: 0;
+                    z-index: 10000;
+                    -webkit-touch-callout: none;
+                    @include media('>=LGdesktop') {
+                        position: absolute;
+                        top: 15px;
+                    }
+                }
+                #menuToggle .line {
+                    display: block;
+                    width: 29px;
+                    height: 4px;
+                    margin-bottom: 5px;
+                    position: relative;
+                    border-radius: 3px;
+                    z-index: 10;
+                    transform-origin: 3px 0px;
+                    transition: transform 0.2s cubic-bezier(0.77,0.2,0.05,1.0),
+                    background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                    opacity 0.55s ease;
+                    @include media('>=LGdesktop') {
+                        width: 31px;
+                        height: 5px;
+                    }
+                }
+                #menuToggle span:first-child {
+                    transform-origin: 0% 0%;
+                }
+                #menuToggle span:nth-last-child(2) {
+                    transform-origin: 0% 100%;
+                }
+                #menuToggle input:checked ~ span {
+                    opacity: 1;
+                    transform: rotate(40deg) translate(11px, -2px);
+                    background: #fff;
+                    @include media('>=LGdesktop') {
+                        transform: rotate(40deg) translate(12px, -2px);
+                    }
+                }
+                #menuToggle input:checked ~ span:nth-last-child(3) {
+                    opacity: 0;
+                    transform: rotate(0deg)     
+                        scale(0.2, 0.2);
+                }
+                #menuToggle input:checked ~ span:nth-last-child(2) {
+                    opacity: 1;
+                    transform: rotate(-40deg) translate(6px, 9px);
+                }
+                #menu {
+                    position: absolute;
+                    width: 200px;
+                    height: 100%;
+                    margin: -100px 0 0 -50px;
+                    padding: 50px;
+                    padding-top: 125px;
+                    list-style-type: none;
+                    transform-origin: 0 0;
+                    transform: translate(-100%, 0);
+                    transition: transform 0.5s;
+                    text-align: center;
+                    z-index: 1;
+                    @include media('>=LGdesktop') {
+                        width: 220px;
+                        height: 100%;                                                                                  
+                    }
+                }
+                #menuToggle input:checked ~ #menu {
+                    transform: scale(1.0, 1.0);
+                }
+                .block-links_r {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    margin-top: 10px;
+                    .homepage_r {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        cursor: pointer;
+                        transition: 0.3s ease-in-out;
+                        &_icon {
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            width: 24px;
+                            height: 24px;
+                            @include media('>=LGdesktop') {
+                                width: 29px;
+                                height: 29px;
+                            }
+                        }
+                        .link_homepage_r {
+                            text-decoration: none;
+                            color: #fff;
+                            font-size: 21px;
+                            font-family: 'Montserrat Alternates', sans-serif;
+                            text-align: center;
+                            letter-spacing: 0.1em;
+                            margin-left: 10px;
+                            transition: 0.5s;
+                            @include media('>=LGdesktop') {
+                                font-size: 23px;
+                            }
+                        }
+                    }
+                    .homepage_r:hover {
+                        opacity: 0.6;
+                    }
+                    .read_r {
+                        margin-top: 15px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        cursor: pointer;
+                        transition: 0.3s ease-in-out;
+                        &_icon {
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            width: 24px;
+                            height: 24px;
+                            @include media('>=LGdesktop') {
+                                width: 29px;
+                                height: 29px;                                                                                   
+                            }
+                        }
+                        .link_read_r {
+                            text-decoration: none;
+                            color: #fff;
+                            font-size: 21px;
+                            font-family: 'Montserrat Alternates', sans-serif;
+                            text-align: center;
+                            margin-left: 10px;
+                            transition: 0.5s;
+                            @include media('>=LGdesktop') {
+                                font-size: 23px;
+                            }
+                        }
+                    }
+                    .read_r:hover {
+                        opacity: 0.6;
+                    }
+                }
+                .bottom_r {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    position: absolute;
+                    bottom: 130px;
+                    left: -10px;
+                    @include media('>=LGdesktop') {
+                        bottom: 150px;
+                    }
+                    .username_r {
+                        margin-left: 35px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        cursor: pointer;
+                        transition: 0.3s ease-in-out;
+                        .profile_name_r {
+                            font-family: 'Montserrat Alternates', sans-serif;
+                            font-weight: 600;
+                            font-size: 16px;
+                            text-align: center;
+                            letter-spacing: 0.1em;
+                            color: #fff;
+                            transition: 0.5s;
+                        }
+                        &_icon {
+                            background: url('../media/create_and_read_images/user_icon.png');
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            width: 27px;
+                            height: 27px;
+                            margin-left: 3px;
+                        }
+                    }
+                    .username_r:hover {
+                        opacity: 0.6;
+                    }
+                    .logout_r {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        cursor: pointer;
+                        transition: 0.3s ease-in-out;
+                        &_text {
+                            font-family: 'Montserrat Alternates', sans-serif;
+                            font-style: normal;
+                            font-weight: 600;
+                            font-size: 14px;
+                            text-align: center;
+                            letter-spacing: 0.1em;
+                            color: #fff;
+                            transition: 0.6s;
+                            text-decoration: none;
+                        }
+                        &_icon {
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            width: 27px;
+                            height: 27px;
+                            margin-left: 3px;
+                        }
+                    }
+                    .logout_r:hover {
+                        opacity: 0.6;
+                    }
+                }
+                .logo_toolApp {
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    width: 160px;
+                    height: 45px;
+                    margin-left: 15px;
+                    @include media('>=LGdesktop') {
+                        width: 195px;
+                        height: 65px;
+                    }
+                }
+            }
+            .right-section {
+                z-index: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-right: 25px;
+                .search-block {
+                    position: relative;
+                    .search {
+                        border-radius: 35px;
+                        font-size: 13px;
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 13px;
+                        line-height: 17px;
+                        font-family: 'Montserrat Alternates';
+                        text-indent: 6px;
+                        width: 335px;
+                        height: 35px;
+                        border: none;
+                        position: relative;
+                        z-index: 1;
+                        @include media('>=LGdesktop') {
+                            width: 375px;
+                            height: 40px;
+                            font-size: 13px;
+                        }
+                    }
+                    .search-btn {
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        width: 18px;
+                        height: 18px;
+                        border: none;
+                        position: absolute;
+                        top: 10px;
+                        left: 315px;
+                        z-index: 1000;
+                        @include media('>=LGdesktop') {
+                            width: 22px;
+                            height: 22px;
+                            left: 350px;
+                        }
+                    }
+                }
+                .create-block {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 30px;
+                    cursor: pointer;
+                    border: none;
+                    .plus {
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        width: 28px;
+                        height: 28px;
+                        @include media('>=LGdesktop') {
+                            width: 32px;
+                            height: 32px;
+                        }
+                    }
+                    &_text {
+                        font-family: 'Montserrat Alternates';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 14px;
+                        line-height: 17px;
+                        text-align: center;
+                        color: #000000;
+                        margin-left: 5px;
+                        @include media('>=LGdesktop') {
+                            font-size: 17px;
+                        }
+                    }
+                }
+            }
+        }
+        &__main {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: -15px;
+            @include media('>=LGdesktop') {
+                height: 80%;
+            }
+            &__notes_block {
+                width: 80%;
+                height: 80%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                .pagination {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    .prev {
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        width: 25px;
+                        height: 25px;
+                        @include media('>=LGdesktop') {
+                            width: 28px;
+                            height: 28px;
+                        }
+                    }
+                    .next {
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        width: 25px;
+                        height: 25px;
+                        transform: rotate(180deg);
+                        margin-left: 5px;
+                        @include media('>=LGdesktop') {
+                            width: 28px;
+                            height: 28px;
+                        }
+                    }
+                    .page {
+                        color: #000;
+                        font-family: 'Montserrat Alternates', sans-serif;
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 16px;
+                        text-align: center;
+                        text-decoration: none;
+                        margin-left: 10px;
+                        @include media('>=LGdesktop') {
+                            font-size: 23px;
+                        }
+                    }
+                    .current {
+                        border-bottom: 3px solid;
+                        padding-top: 3px;
+                        padding-left: 2px;
+                        padding-right: 3px; // Не работает паддинг !!!
+                    }
+                }
+                .bottom_note_page {
+                    display: flex;
+                    justify-content: space-between;
+                    .notes_block {
+                        display: grid;
+                        justify-content: space-around;
+                        align-items: center;
+                        width: 80vw;
+                        height: 70vh;
+                        .notes {
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: center;
+                            align-items: center;
+                            .empty_notes_block h1 {
+                                font-family: 'Montserrat Alternates', sans-serif;
+                                font-style: normal;
+                                font-weight: 600;
+                                font-size: 24px;
+                                text-align: center;
+                            }
+                        }
+                        .note {
+                            width: 20vw;
+                            height: 40vh;
+                            border: none;
+                            border-radius: 10px;
+                            margin-left: 25px;
+                            margin-top: 25px;
+                            position: relative;
+                            overflow-y: auto;
+                            overflow-x: hidden;
+                            box-shadow: 5px 5px 15px 3px rgba(0, 0, 0, 0.25);
+                            scrollbar-gutter: stable;
+                            text-decoration: none;
+                            @include media('>=LGdesktop') {
+                                width: 350px;
+                                height: 320px;
+                                border: none;
+                                border-radius: 10px;
+                                margin-left: 20px;
+                                margin-top: 20px;
+                                position: relative;
+                                overflow-y: auto;
+                                overflow-x: hidden;
+                            }
+                            &_top {
+                                width: 100%;
+                                position: absolute;
+                                top: 5px;
+                                left: 10px;
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                margin-top: 5px;
+                                .note_header {
+                                    margin-left: 20px;
+                                    margin-top: 5px;
+                                    .header {
+                                        font-family: 'Montserrat Alternates', sans-serif;
+                                        font-style: normal;
+                                        font-weight: 700;
+                                        font-size: 12px;
+                                        text-align: center;
+                                        line-height: 20px;
+                                        word-wrap: break-word;
+                                        max-width: 150px;
+                                        @include media('>=LGdesktop') {
+                                            font-size: 18px;
+                                            max-width: 170px;
+                                        }
+                                    }
+                                }
+                                .note_date {
+                                    margin-right: 20px;
+                                    margin-top: 5px;
+                                    .date {
+                                        font-family: 'Montserrat Alternates', sans-serif;
+                                        font-style: normal;
+                                        font-weight: normal;
+                                        font-size: 10px;
+                                        line-height: 20px;
+                                        text-align: center;
+                                        @include media('>=LGdesktop') {
+                                            font-size: 14px;
+                                        }
+                                    }
+                                }
+                            }
+                            &_middle {
+                                display: flex;
+                                justify-content: center;
+                                margin-top: 40px;
+                                position: relative;
+                                overflow-y: overlay;
+                                max-height: 160px;
+                                overflow-x: hidden;
+                                width: 106%;
+                                @include media('>=LGdesktop') {
+                                    max-height: 260px;
+                                    margin-top: 35px;
+                                }
+                                .text {
+                                    font-family: 'Montserrat Alternates', sans-serif;
+                                    font-style: normal;
+                                    font-weight: 500;
+                                    font-size: 14px;
+                                    letter-spacing: 0.1px;
+                                    max-width: 220px;
+                                    word-wrap: break-word;
+                                    text-align: center;
+                                    line-height: 26px;
+                                    @include media('>=LGdesktop') {
+                                        font-size: 22px;
+                                        margin-top: 11px;
+                                        max-width: 330px;
+                                    }
+                                }
+                            }
+                            &_bottom {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                width: 100%;
+                                position: absolute;
+                                bottom: 0;
+                                left: 10px;
+                                bottom: 5px;
+                                @include media('>=LGdesktop') {
+                                    position: absolute;
+                                    left: 10px;
+                                    bottom: 10px;
+                                }
+                                .mark {
+                                    #marker_button {
+                                        background-repeat: no-repeat;
+                                        background-size: contain;
+                                        width: 20px;
+                                        height: 22px;
+                                        cursor: pointer;
+                                        border: none;
+                                        @include media('>=LGdesktop') {
+                                            width: 28px;
+                                            height: 28px;
+                                        }
+                                    }
+                                    #marker_button .active {
+                                        background-repeat: no-repeat;
+                                        background-size: contain;
+                                        width: 22px;
+                                        height: 22px;
+                                        cursor: pointer;
+                                        border: none;
+                                        @include media('>=LGdesktop') {
+                                            width: 28px;
+                                            height: 28px;
+                                        }
+                                    }
+                                    #marker_button_remove {
+                                        background-repeat: no-repeat;
+                                        background-size: contain;
+                                        width: 22px;
+                                        height: 22px;
+                                        cursor: pointer;
+                                        border: none;
+                                        @include media('>=LGdesktop') {
+                                            width: 28px;
+                                            height: 28px;
+                                        }
+                                    }
+                                }
+                                .upd_del {
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    margin-right: -3px;
+                                    @include media('>=LGdesktop') {
+                                        margin-right: 0;
+                                    }
+                                    .update_btn {
+                                        background-repeat: no-repeat;
+                                        background-size: contain;
+                                        border: none;
+                                        width: 25px;
+                                        height: 25px;
+                                        cursor: pointer;
+                                        margin-top: 3px;
+                                        @include media('>=LGdesktop') {
+                                            width: 28px;
+                                            height: 28px;
+                                        }
+                                    }
+                                    .del_btn {
+                                        background-repeat: no-repeat;
+                                        background-size: contain;
+                                        width: 25px;
+                                        height: 25px;
+                                        cursor: pointer;
+                                        margin-top: 3px;
+                                        border: none;
+                                        @include media('>=LGdesktop') {
+                                            width: 28px;
+                                            height: 28px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .note_middle::-webkit-scrollbar {
+                            width: 20px;
+                        }
+                          
+                        .note_middle::-webkit-scrollbar-track {
+                            background-color: transparent;
+                        }
+                        
+                        .note_middle::-webkit-scrollbar-thumb {
+                            background-color: #d6dee1;
+                            border-radius: 20px;
+                            border: 6px solid transparent;
+                            background-clip: content-box;
+                        }
+                        
+                        .note_middle::-webkit-scrollbar-thumb:hover {
+                            background-color: #a8bbbf;
+                        }
+                    }
+                    .empty_notes_block {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-100%, -50%);
+                    } 
+                } 
+                .collections {
+                    display: flex;
+                    width: 25%;
+                    margin-top: 5vh;
+                    .notes_collection_separator {
+                        width: 1px;
+                        height: 525px;
+                        display: flex;
+                        background: black;
+                        @include media('>=LGdesktop') {
+                            height: 545px;
+                        }
+                    }
+
+                    .your_collections {
+                        margin-left: 10px;
+                        width: 260px;
+                        &_header {
+                            font-family: 'Montserrat Alternates';
+                            font-size: 18px;
+                            font-weight: 700;
+                            margin-left: 15px
+                        }
+                        #collections_list {
+                            margin-top: 8px;
+                            flex-direction: column;
+                            align-items: flex-start;
+                            max-height: 250px;
+                            overflow-y: overlay;
+                            z-index: 2;
+                            min-height: 80px;
+                            @include media('>=LGdesktop') {
+                                max-height: 310px;
+                            }
+                            .collection {
+                                width: 233px;
+                                height: 30px;
+                                border-radius: 5px;
+                                display: flex;
+                                position: relative;
+                                align-items: center;
+                                justify-content: space-between;
+                                padding-left: 15px;
+                                text-decoration: none;
+                                margin-bottom: 2px;
+                                .collection_info {
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    z-index: 1;
+                                    .collection_image {
+                                        background-repeat: no-repeat;
+                                        background-size: contain;
+                                        height: 15px;
+                                        width: 20px;
+                                        z-index: 1;
+                                        @include media('>=LGdesktop') {
+                                            height: 21px;
+                                            width: 26px;
+                                        }
+                                    }
+                                    .collection_name {
+                                        font-family: 'Montserrat Alternates';
+                                        text-decoration: none;
+                                        margin-left: 10px;
+                                        font-size: 14px;
+                                        font-weight: 600;
+                                        @include media('>=LGdesktop') {
+                                            font-size: 16px;
+                                        }
+                                    }
+                                }
+                                }
+                                .inv {
+                                    z-index: -1;
+                                }
+                                .collection:hover {
+                                    background-color: #aaaaaa;
+                                    position: relative;
+                                    z-index: 1;
+                                    cursor: pointer;
+                                }
+                                .selected {
+                                    position: relative;
+                                    z-index: 10;
+                                    .collection_more {
+                                        position: relative;
+                                        display: inline-block;
+                                        .collection_more_button {
+                                            padding: 0;
+                                            margin-right: 15px;
+                                            border: none;
+                                            background-color: rgba(0, 0, 0, 0);
+                                            height: 25px;
+                                            width: 25px;
+                                            display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                            .image {
+                                                background-repeat: no-repeat;
+                                                height: 3px;
+                                                width: 15px;
+                                            }
+                                        }
+                                        .collection_more_dropdown {
+                                            display: none;
+                                            position: absolute;
+                                            z-index: 99999;
+                                            width: 90px;
+                                            margin-left: -65px;
+                                            box-shadow: 0px 8px 5px 2px rgba(0, 0, 0, 0.25);
+                                            border-radius: 4px;
+                                            p {
+                                                font-family: 'Montserrat Alternates';
+                                                font-style: normal;
+                                                font-weight: 600;
+                                                font-size: 12px;
+                                                @include media('>=LGdesktop') {
+                                                    font-size: 11px;
+                                                }
+                                            }
+                                            .add_notes_to_collection_btn_wrapper {
+                                                display: flex;
+                                                align-items: center;
+                                                margin: 5px 0 5px 5px;
+                                                text-decoration: none;
+                                                .add_notes_to_collection_btn {
+                                                    background-repeat: no-repeat;
+                                                    background-size: contain;
+                                                    border: none;
+                                                    width: 16px;
+                                                    height: 16px;
+                                                    padding: 0;
+                                                    cursor: pointer;
+                                                    margin-right: 3px;
+                                                    @include media('>=LGdesktop') {
+                                                        width: 20px;
+                                                        height: 20px;
+                                                    }
+                                                }
+                                            }
+                                            .rename_collection_btn_wrapper {
+                                                display: flex;
+                                                align-items: center;
+                                                margin: 0 0 7px 0;
+                                                text-decoration: none;
+                                                border: none;
+                                                .rename_collection_btn {
+                                                    background-repeat: no-repeat;
+                                                    background-size: contain;
+                                                    border: none;
+                                                    width: 18px;
+                                                    height: 18px;
+                                                    cursor: pointer;
+                                                    margin-right: 3px;
+                                                    @include media('>=LGdesktop') {
+                                                        width: 21px;
+                                                        height: 21px;
+                                                    }
+                                                }
+                                            }
+                                            .delete_collection_btn_wrapper {
+                                                display: flex;
+                                                align-items: center;
+                                                text-decoration: none;
+                                                border: none;
+                                                padding-bottom: 4px;
+                                                .delete_collection_btn {
+                                                    background-repeat: no-repeat;
+                                                    background-size: contain;
+                                                    border: none;
+                                                    width: 18px;
+                                                    height: 18px;
+                                                    cursor: pointer;
+                                                    margin-right: 3px;
+                                                    @include media('>=LGdesktop') {
+                                                        width: 21px;
+                                                        height: 21px;
+                                                    }
+                                                }
+                                            }
+                                            
+                                        }
+                                        .show {
+                                            display: block;
+                                        }
+                                    }
+                                    
+                                }
+                                .selected:hover {
+                                    cursor: default;
+                                }
+                            }
+                        }
+                        #collections_list::-webkit-scrollbar {
+                            width: 20px;
+                        }
+                          
+                        #collections_list::-webkit-scrollbar-track {
+                            background-color: transparent;
+                        }
+                        
+                        #collections_list::-webkit-scrollbar-thumb {
+                            background-color: #d6dee1;
+                            border-radius: 20px;
+                            border: 6px solid transparent;
+                            background-clip: content-box;
+                        }
+                        
+                        #collections_list::-webkit-scrollbar-thumb:hover {
+                            background-color: #a8bbbf;
+                        }
+                        #create_collections_forms {
+                            padding-left: 15px;
+                            .hidden {
+                                display: none;
+                            }
+                            label {
+                                display: none;
+                            }
+                            .create_collection_form {
+                                width: 233px;
+                                height: 30px;
+                                border-radius: 5px;
+                                display: flex;
+                                align-items: center;
+                                margin-bottom: 10px;
+                                form {
+                                    display: flex;
+                                    align-items: center;
+                                }
+                                #id_name {
+                                    width: 200px;
+                                    height: 30px;
+                                    background: none;
+                                    font-family: Montserrat;
+                                    font-size: 12px;
+                                    font-weight: 600;
+                                    border: none;
+                                    border-radius: 5px;
+                                    margin-left: 10px;
+                                }
+                                .button_collection {
+                                    width: 24px;
+                                    height: 30px;
+                                    border: none;
+                                    border-radius: 5px;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    .send_icon {
+                                        background: url('../media/create_and_read_images/send.png');
+                                        background-repeat: no-repeat;
+                                        background-size: cover;
+                                        width: 14px;
+                                        height: 12px;
+                                    } 
+
+                                }
+                                .button_collection:hover {
+                                    background-color: #aaaaaa;
+                                }
+                            }
+                    }
+
+                    hr.hr-2 {
+                        display: block;
+                        border: 0;
+                        width: 100%;
+                        height: 0;
+                        border-top: 2px solid;
+                    }
+                    .hidden {
+                        display: none;
+                    }
+                    .show {
+                        display: flex;
+                    }
+                    .add_collection_button {
+                        padding: 0;
+                        background: white;
+                        border: none;
+                        font-family: 'Montserrat Alternates';
+                        font-size: 14px;
+                        font-weight: 600;
+                        display: flex;
+                        align-items: center;
+                        margin-left: 15px;
+                        .plus_image {
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            width: 20px;
+                            height: 20px;
+                            margin-right: 18px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// LIGHT THEME, ELEMS, TEXT etc.
+.light_bg {
+    background-color: var(--light-bg) !important;
+}
+.light_elems {
+    color: var(--light-elements) !important;
+}
+.light_elems_bg {
+    background-color: var(--light-elements) !important;
+}
+.light_elems_border {
+    border-color: var(--light-elements) !important;
+}
+.light_inputs {
+    background-color: var(--light-inputs) !important;
+    color: #000;
+    &::placeholder {
+        color: #000;
+    }
+}
+.light_delete_col_btn {
+    background-color: var(--light-bg);
+}
+.light_rename_col_btn {
+    background-color: var(--light-bg);
+}
+.light_line {
+    background-color: #000 !important;
+}
+.light_alert {
+    background-color: var( --light-inputs) !important;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+}
+.light_errortext {
+    color: var(--light-elements) !important;
+}
+.light_create-block {
+    background-color: #fff;
+}
+
+// LIGHT ICONS
+.light_arrow {
+    background: url('../media/create_and_read_images/icon_arrow.png');
+}
+.light_delete {
+    background: url('../media/create_and_read_images/dark_trashbin.png');
+}
+.light_update {
+    background: url('../media/create_and_read_images/dark_pencil.png');
+}
+.light_plus {
+    background: url('../media/create_and_read_images/black_plus.png');
+}
+.light_miniplus {
+    background: url('../media/create_and_read_images/black_plus.png');
+}
+.light_collection {
+    background: url('../media/create_and_read_images/collection.png');
+}
+.light_more {
+    background: url('../media/create_and_read_images/more.png');
+}
+.light_marker {
+    background: url('../media/create_and_read_images/marker.png');
+}
+.light_search {
+    background: url('../media/create_and_read_images/search.png');
+}
+
+// NOTE MARKERS
+.light_green_marker {
+    background: url('../media/accent_icons/light/light_green_marker.png');
+}
+.light_light_blue_marker {
+    background: url('../media/accent_icons/light/light_blue_marker.png');
+}
+.light_orange_marker {
+    background: url('../media/accent_icons/light/orange_marker.png');
+}
+.light_red_marker {
+    background: url('../media/accent_icons/light/red_marker.png');
+}
+
+// DARK THEME, ELEMS, TEXT etc.
+.dark_bg {
+    background-color: var(--dark-bg) !important;
+}
+.dark_elems {
+    color: var(--dark-elements) !important;
+}
+.dark_elems_bg {
+    background-color: var(--dark-elements) !important;
+}
+.dark_elems_border {
+    border-color: var(--dark-elements) !important;
+}
+.dark_inputs {
+    background-color: var(--dark-inputs);
+    color: rgb(212, 212, 212);
+    &::placeholder {
+        color: rgb(212, 212, 212);
+    }
+}
+.dark_line {
+    background-color: var(--dark-elements) !important;
+}
+.dark_alert {
+    background-color: var(--dark-bg) !important;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
+}
+.dark_errortext {
+    color: var(--dark-elements) !important;
+}
+.dark_create-block {
+    background-color: var(--dark-bg) !important;
+}
+.dark_delete_col_btn {
+    background-color: var(--dark-bg);
+}
+.dark_rename_col_btn {
+    background-color: var(--dark-bg);
+}
+
+
+// DARK ICONS
+.dark_arrow {
+    background: url('../media/dark_theme_images/icon_arrow.png');
+}
+.dark_delete {
+    background: url('../media/dark_theme_images/white_trashbin.png');
+}
+.dark_update {
+    background: url('../media/dark_theme_images/white_pencil.png');
+}
+.dark_plus {
+    background: url("../media/dark_theme_images/white_plus.png")
+}
+.dark_miniplus {
+    background: url('../media/dark_theme_images/mini_plus.png');
+}
+.dark_collection {
+    background: url('../media/dark_theme_images/collection.png');
+}
+.dark_more {
+    background: url('../media/dark_theme_images/more.png');
+}
+.dark_marker {
+    background: url('../media/dark_theme_images/marker.png');
+}
+.dark_search {
+    background: url('../media/dark_theme_images/search.png');
+}
+
+// NOTE MARKERS
+.dark_green_marker {
+    background: url('../media/accent_icons/dark/green_marker.png');
+}
+.dark_light_blue_marker {
+    background: url('../media/accent_icons/dark/light_blue_marker.png');
+}
+.dark_orange_marker {
+    background: url('../media/accent_icons/dark/orange_marker.png');
+}
+.dark_red_marker {
+    background: url('../media/accent_icons/dark/red_marker.png');
+}
+
+
+// ACCENT COLORs CSS
+.green_accent_text {
+    color: var(--acc-col-green) !important;
+}
+.light_blue_accent_text {
+    color: var(--acc-col-light-blue) !important;
+}
+.orange_accent_text {
+    color: var(--acc-col-orange) !important;
+}
+.red_accent_text {
+    color: var(--acc-col-red) !important;
+}
+
+.green_border {
+    border-color: var(--acc-col-green);
+}
+.light_blue_border {
+    border-color: var(--acc-col-light-blue);
+}
+.orange_border {
+    border-color: var(--acc-col-orange);
+}
+.red_border {
+    border-color: var(--acc-col-red);
+}
+
+.green_bg_collection {
+    background-color: var(--acc-col-green-alpha) !important;
+}
+.light_blue_bg_collection {
+    background-color: var(--acc-col-light-blue-alpha) !important;
+}
+.orange_bg_collection {
+    background-color: var(--acc-col-orange-alpha) !important;
+}
+.red_bg_collection {
+    background-color: var(--acc-col-red-alpha) !important;
+}
+
+.green_bg {
+    background-color: var(--acc-col-green) !important;
+}
+.light_blue_bg {
+    background-color: var(--acc-col-light-blue) !important;
+}
+.orange_bg {
+    background-color: var(--acc-col-orange) !important;
+}
+.red_bg {
+    background-color: var(--acc-col-red) !important;
+}
+
+// Logo Light with accent color
+.light_theme_orange_logo {
+    background: url('../media/accent_icons/light/orangeLogo_ToolApp.png');
+}
+.light_theme_red_logo {
+    background: url('../media/accent_icons/light/redLogo_ToolApp.png');
+}
+.light_theme_green_logo {
+    background: url('../media/accent_icons/light/greenToolApp_logo.png');
+}
+.light_theme_light_blue_logo {
+    background: url('../media/accent_icons/light/blueLogo_ToolApp.png');
+}
+
+// Logo dark with accent color
+.dark_theme_orange_logo {
+    background: url('../media/accent_icons/dark/orangeLogo_ToolApp.png');
+}
+.dark_theme_red_logo {
+    background: url('../media/accent_icons/dark/redLogo_ToolApp.png');
+}
+.dark_theme_green_logo {
+    background: url('../media/accent_icons/dark/greenLogo_ToolApp.png');
+}
+.dark_theme_light_blue_logo {
+    background: url('../media/accent_icons/dark/blueLogo_ToolApp.png');
+}

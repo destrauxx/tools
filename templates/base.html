@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'media/index_images/notepad.png' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>{% block title %}Notes App{% endblock %}</title>
+    <script src="https://unpkg.com/htmx.org@1.5.0"
+            integrity="sha384-oGA+prIp5Vchu6we2YkI51UtVzN9Jpx2Z7PnR1I78PnZlN8LkrCT4lqqqmDkyrvI"
+            crossorigin="anonymous"></script>
+    {% block style %}
+    {% endblock %}
+</head>
+<body id='content_body'>
+    {% block content %}
+    {% endblock %}
+</body>
+<script name='main'>
+    document.body.addEventListener('htmx:configRequest', (event) => {    // Функция для 
+          event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';      // работы csrf токенов
+        })                                                               // с htmx формами
+
+    let create = document.querySelector('.create-block');
+    let sectionCreate = document.querySelector('.section-create');
+
+    create.addEventListener("click", (e) => {
+        sectionCreate.style.display = 'block'
+    });
+</script>
+</html>
