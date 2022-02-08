@@ -111,7 +111,7 @@ USE_L10N = True
 USE_TZ = True
 
 
-LOGIN_URL = '/auth/login'
+LOGIN_URL = '/auth/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 # Static files (CSS, JavaScript, Images)
@@ -119,7 +119,8 @@ LOGOUT_REDIRECT_URL = '/'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+STATICFILES_STORAGE='django.contrib.staticfiles.storage.StaticFilesStorage'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'staticbase',
