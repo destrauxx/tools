@@ -89,18 +89,11 @@ class LogoutView(LogoutView):
 class ProfileView(DetailView, FormView):
     template_name = "authenticate/profile.html"
     model = UserInfo
-    # extra_context = {
-    #     'form_update_image': UpdateProfileImageForm(),
-    #     'form_customization': UserCustomizationForm(),
-    #     'user': User.objects.get(username=request.user),
-
-    # }
 
     def get(self, request, *args, **kwargs):
         form_update_image = UpdateProfileImageForm()
         form_customization = UserCustomizationForm()
         user = User.objects.get(username=request.user)
-        # last_login = user.last_login.strftime('%d.%m.%y')
         now = datetime.now(timezone.utc)
         joined = (now - user.date_joined).days
         user_info = get_object_or_404(UserInfo, user=request.user)
@@ -114,19 +107,6 @@ class ProfileView(DetailView, FormView):
                                                     'user_notes': user_notes,
                                                     'user_collections': user_collections,
                                                     'joined': joined})
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     user = User.objects.get(username=self.request.user)
-
-    #     context['user'] = user
-    #     context['user_info'] = get_object_or_404(UserInfo, user=user)
-    #     context['user_notes'] = Note.objects.filter(user=user)
-    #     context['user_collections'] = Collection.objects.filter(user=user)
-    #     context['last_login'] = user.last_login.strftime('%d.%m.%y')
-    #     context['form_update_image'] = UpdateProfileImageForm()
-    #     context['form_customization'] = UserCustomizationForm()
-    #     return context
 
     def post(self, request, *args, **kwargs):
         form_update_image = UpdateProfileImageForm(request.POST, request.FILES)
