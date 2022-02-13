@@ -7,9 +7,14 @@ from django.contrib.auth import get_user_model
 from django.conf import settings
 from django.core import mail
 from django.urls import reverse
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
 from PIL import Image
+from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
 from io import BytesIO
 import re
+
+from .tokens import account_activation_token
 
 from .models import UserInfo
 from .forms import UserCustomizationForm
@@ -114,8 +119,14 @@ class ProfileTest(TestCase):
 
     def test_customization_form(self):
         print('[AUTH] Проверка формы кастомизации на валидность []')
-        
         # Передаём в форму тему и акцентный цвет и проверяем валидные в ней данные или нет
+        c.login(username='admin', password='123')
+        url = "/auth/profile/"
+        data = {
+            'theme': 'light',
+            'accent_color': 'orange'
+        }
+        response = c.post(url, data)
         form_valid = UserCustomizationForm(data={
             'theme': 'dark',
             'accent_color': 'green'
@@ -123,6 +134,7 @@ class ProfileTest(TestCase):
         self.assertTrue(form_valid.is_valid())
         invalid_form = UserCustomizationForm(data={})
         self.assertEqual(bool(invalid_form.is_valid()), False)
+        self.assertTrue(response.status_code == 200)
 
         print('[AUTH] Проверка формы кастомизации на валидность [x]')
     
@@ -137,3 +149,76 @@ class ProfileTest(TestCase):
         response = c.post(profile_url, data)
         self.assertEqual(response.status_code, 200)
         print('[AUTH] Проверка смены аватара у пользователя [х]')
+
+    def test_reset_password_url(self):
+        print('[AUTH] Проверка url reset_password []')
+        url = "/auth/reset_password/"
+        response = c.get(url, follow=True)
+        self.assertEqual(response.status_code, 200)
+        print('[AUTH] Проверка url reset_password [x]')
+    
+    def test_reset_password_form(self):
+        print('[AUTH] Проверка формы reset_password []')
+        url = "/auth/reset_password/"
+        data = {
+            'email': 'a@a.com'
+        }
+        response = c.post(url, data, follow=True)
+        form_valid = PasswordResetForm(data={
+            'email': 'a@a.com'
+        })
+        form_invalid = PasswordResetForm(data={
+            'email': ''
+        })
+        self.assertTrue(form_valid.is_valid())
+        self.assertFalse(form_invalid.is_valid())
+        self.assertTrue(response.status_code == 200)
+        print('[AUTH] Проверка формы reset_password [x]')
+    
+    def test_reset_password_sent_url(self):
+        print('[AUTH] Проверка url reset_password_sent []')
+        url = '/auth/reset_password_sent/'
+        response = c.get(url)
+        self.assertEqual(response.status_code, 200)
+        print('[AUTH] Проверка url reset_password_sent [x]')
+
+    def test_reset_password_confirm_url(self):
+        print('[AUTH] Проверка url reset_password_confirm []')
+        user = User.objects.get(pk=1)
+        uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+        token = account_activation_token.make_token(user)
+        url = f"/auth/reset/<{uidb64}>/<{token}/"
+        response = c.get(url)
+        self.assertEqual(response.status_code, 200)
+        print('[AUTH] Проверка url reset_password_confirm [x]')
+    
+    def test_reset_password_confirm_form_valid(self):
+        print('[AUTH] Проверка формы reset_password_confirm []')
+        user = User.objects.get(pk=1)
+        uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+        token = account_activation_token.make_token(user)
+        url = f"/auth/reset/<{uidb64}>/<{token}/"
+        data = {
+            'new_password1': 'lmznxbcv',
+            'new_password2': 'lmznxbcv'
+        }
+        form_valid = SetPasswordForm(user=user, data={
+            'new_password1': 'lmznxbcv',
+            'new_password2': 'lmznxbcv'
+        })
+        form_invalid = SetPasswordForm(user=user, data={
+            'new_password1': '',
+            'new_password2': 'a'
+        })
+        response = c.post(url, data, follow=True)
+        self.assertTrue(response.status_code == 200)
+        self.assertTrue(form_valid.is_valid())
+        self.assertFalse(form_invalid.is_valid())
+        print('[AUTH] Проверка формы reset_password_confirm [x]')
+    
+    def test_reset_password_complete_url(self):
+        print('[AUTH] Проверка url reset_password_complete []')
+        url = "/auth/reset_password_complete/"
+        response = c.get(url)
+        self.assertTrue(response.status_code == 200)
+        print('[AUTH] Проверка url reset_password_complete [x]')
