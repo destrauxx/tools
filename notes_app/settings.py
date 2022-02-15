@@ -19,7 +19,6 @@ ALLOWED_HOSTS = ["127.0.0.1", "t00lapp.herokuapp.com"]
 
 DATE_INPUT_FORMATS = ['%d-%m-%Y']
 
-#  'cryptic-badlands-65500.herokuapp.com'
 # Application definition
 
 INSTALLED_APPS = [

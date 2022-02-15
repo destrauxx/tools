@@ -1,18 +1,15 @@
-from ast import Bytes
-from urllib import request
 from django.test import TestCase, Client
-
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.contrib.auth import get_user_model
 from django.conf import settings
-from django.core import mail
-from django.urls import reverse
+
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
+
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
+
 from PIL import Image
-from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
 from io import BytesIO
-import re
 
 from .tokens import account_activation_token
 
@@ -27,13 +24,14 @@ def create_image(filename, size=(70, 70), image_format="png", image_mode="RGB"):
     data = BytesIO()
     # создаём картинку с заданным размером и форматом
     Image.new(image_mode, size).save(data, image_format)
-    # Перемещает указатель текущей позиции в файле в его начало. Я надеюсь ты понял хоть что-нибудь =/ Я сам в этом не до конца разобрался
+    # Перемещает указатель текущей позиции в файле в его начало.
     data.seek(0)
     return data
 
 class ProfileTest(TestCase):
 
     def setUp(self):
+        # Создаем пользователя во временной базе данных
         basic_user = User(username='admin', email='a@a.com')
         basic_user_info = UserInfo(user=basic_user)
         basic_user.set_password('123')
@@ -44,78 +42,82 @@ class ProfileTest(TestCase):
         self.basic_user_email = 'a@a.com'
 
     def test_importing_model(self):
-        print('[AUTH] Проверка импортирования модели UserInfo []')
+        print('[AUTH] Проверка импортирования модели UserInfo')
         try:
+            # Импортируем модель и ставим import_status = True
             from .models import UserInfo
             import_status = True
         except:
+            # Если при импортировании модели произошла ошибка, то import_status = False
             import_status = False
 
+        # Если import_status = True, то тест пройден, иначе msg
         self.assertTrue(import_status, msg='Модель UserInfo не импортирована!')
-        print('[AUTH] Проверка импортирования модели UserInfo [x]')
 
     def test_registration_url(self):
         print('[AUTH] Проверка url регистрации []')
         registration_url = '/auth/register/'
+        # Посылаем get запрос на указанный url
         response = c.get(registration_url)
-        self.assertEqual(response.status_code, 200)
-        print('[AUTH] Проверка url регистрации [x]')
-
+        # Если статус запроса 200, то тест пройден, иначе msg
+        self.assertEqual(response.status_code, 200, msg='URL регистрации недоступен!')
 
     def test_registration_request(self):
-        print('[AUTH] Проверка регистрации пользователя []')
+        print('[AUTH] Проверка регистрации пользователя')
         registration_url = '/auth/register/'
+
+        # Данные, используемые при регистрации
         data = {
-            'username': self.basic_user,
-            'email': self.basic_user_email,
-            'password1': self.basic_user_password,
-            'password2': self.basic_user_password
+            'username': 'user',
+            'email': 'a@a.com',
+            'password1': 'Abcdefg404',
+            'password2': 'Abcdefg404',
         }
+
+        # Посылаем post запрос на url регистрации с данными
         response = c.post(registration_url, data, follow=True)
-        response_status = response.status_code
-        self.assertEqual(response_status, 200)
-        print('[AUTH] Проверка регистрации пользователя [x]')
+        self.assertEqual(response.status_code, 200, msg='Регистрация не пройдена!')
     
-    def test_user_exists(self):
-        print('[AUTH] Проверка существования пользователя в базе []')
-        user_exists = User.objects.filter(pk=1).exists()
-        if user_exists:
-            b_user = User.objects.get(pk=1)
-            print('[AUTH] Проверка существования пользователя в базе [x]')
-        else:
-            print("User doesn`t exist!")
+    # def test_user_exists(self):
+    #     print('[AUTH] Проверка существования пользователя в базе')
+    #     user_exists = User.objects.filter(pk=1).exists()
+    #     if user_exists:
+    #         b_user = User.objects.get(pk=1)
+    #         print('[AUTH] Проверка существования пользователя в базе [x]')
+    #     else:
+    #         print("User doesn`t exist!")
+    # Я пока не понял, зачем этот тест, если пользователь всегда будет в бд, поскольку он создается в setUp
 
     def test_login_url(self):
-        print('[AUTH] Проверка url логина []')
-        login_url = '/auth/login/'
-        self.assertEqual(settings.LOGIN_URL, login_url)
-        print('[AUTH] Проверка url логина [x]')
+        print('[AUTH] Проверка url логина')
+        login_url = settings.LOGIN_URL
+        # Посылаем get запрос на указанный url
+        response = c.get(login_url)
+        self.assertEqual(response.status_code, 200, msg='URL логина недоступен!')
     
     def test_login_request(self):
-        print('[AUTH] Проверка входа пользователя в аккаунт []')
+        print('[AUTH] Проверка входа пользователя в аккаунт')
         login_url = settings.LOGIN_URL
+        # Данные запроса
         data = {
             'username': self.basic_user,
             'password': self.basic_user_password,
         }
+        # Запрос на url логина с данными
         response = c.post(login_url, data, follow=True)
-        response_status = response.status_code
-        self.assertEqual(response_status, 200)
-        print('[AUTH] Проверка входа пользователя в аккаунт [x]')
+        self.assertEqual(response.status_code, 200, msg='Логин не пройден!')
     
     def test_logout(self):
-        print('[AUTH] Проверка выхода пользователя из аккаунта []')
-        c.logout()
-        response = c.get('/')
-        self.assertTrue(response.status_code == 200)
-        print('[AUTH] Проверка выхода пользователя из аккаунта [x]')
-    
+        print('[AUTH] Проверка выхода пользователя из аккаунта')
+        logout_url = '/auth/logout/'
+        response = c.post(logout_url)
+        self.assertTrue(response.status_code == 302)
+        
     def test_userpage_url(self):
-        print('[AUTH] Проверка url userpage []')
+        print('[AUTH] Проверка url userpage')
         login_admin = c.login(username='admin', password='123')
         response = c.get('/auth/profile/')
         self.assertEqual(response.status_code, 200)
-        print('[AUTH] Проверка url userpage [x]')
 
     def test_customization_form(self):
         print('[AUTH] Проверка формы кастомизации на валидность []')
