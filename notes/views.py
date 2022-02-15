@@ -96,9 +96,14 @@ class ReadNotesView(LoginRequiredMixin, ListView):
             notes = Note.objects.filter(user=request.user)
 
         search_input = self.request.GET.get('search-input', '')
+        s = False
+        notes_count = Note.objects.all().count()
         if search_input:
+            s = True
             notes = Note.objects.filter(header__icontains=search_input)
+            notes_count = Note.objects.filter(header__icontains=search_input).all().count()
             if not notes:
+                s = False
                 messages.error(request, 'Notes Not Found!')
                 return redirect('read_notes')
 
@@ -126,6 +131,8 @@ class ReadNotesView(LoginRequiredMixin, ListView):
                                                          'search_input': search_input,
                                                          'selected_collection': selected_collection,
                                                          'user_info': user_info,
+                                                         'notes_count': notes_count,
+                                                         's': s
                                                          })
     
 class CreateCollectionView(LoginRequiredMixin, CreateView):

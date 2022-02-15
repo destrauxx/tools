@@ -1189,7 +1189,19 @@
   }
 }
 
-.section-login-wrapper-box__logo {
+.section-login-wrapper-box__navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.section-login-wrapper-box__navbar__logo {
   background: url("../media/login_and_reg_images/Applogo.png");
   background-repeat: no-repeat;
   background-size: contain;
@@ -1200,7 +1212,7 @@
 }
 
 @media (min-width: 1400px) {
-  .section-login-wrapper-box__logo {
+  .section-login-wrapper-box__navbar__logo {
     width: 195px;
     height: 85px;
   }
@@ -2732,6 +2744,23 @@
   height: 70vh;
 }
 
+.section-read-wrapper__main__notes_block .bottom_note_page .notes_block .block_count_notes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.section-read-wrapper__main__notes_block .bottom_note_page .notes_block .block_count_notes__count {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  text-align: center;
+}
+
 .section-read-wrapper__main__notes_block .bottom_note_page .notes_block .notes {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3816,18 +3845,30 @@
   }
 }
 
-.section-reg-wrapper__box__logo {
+.section-reg-wrapper__box__navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.section-reg-wrapper__box__navbar__logo {
   background: url("../media/login_and_reg_images/Applogo.png");
   background-repeat: no-repeat;
   background-size: contain;
   width: 160px;
   height: 70px;
   margin-top: 5px;
-  margin-left: 10px;
+  margin-left: 11px;
 }
 
 @media (min-width: 1400px) {
-  .section-reg-wrapper__box__logo {
+  .section-reg-wrapper__box__navbar__logo {
     width: 195px;
     height: 85px;
   }
