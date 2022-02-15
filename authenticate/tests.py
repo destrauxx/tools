@@ -78,15 +78,6 @@ class ProfileTest(TestCase):
         response = c.post(registration_url, data, follow=True)
         self.assertEqual(response.status_code, 200, msg='Регистрация не пройдена!')
     
-    # def test_user_exists(self):
-    #     print('[AUTH] Проверка существования пользователя в базе')
-    #     user_exists = User.objects.filter(pk=1).exists()
-    #     if user_exists:
-    #         b_user = User.objects.get(pk=1)
-    #         print('[AUTH] Проверка существования пользователя в базе [x]')
-    #     else:
-    #         print("User doesn`t exist!")
-    # Я пока не понял, зачем этот тест, если пользователь всегда будет в бд, поскольку он создается в setUp
 
     def test_login_url(self):
         print('[AUTH] Проверка url логина')
@@ -224,3 +215,13 @@ class ProfileTest(TestCase):
         response = c.get(url)
         self.assertTrue(response.status_code == 200)
         print('[AUTH] Проверка url reset_password_complete [x]')
+
+    def test_verification_url_valid(self):
+        print('[AUTH] Проверка url верификации []')
+        user = User.objects.get(pk=1)
+        uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+        token = account_activation_token.make_token(user)
+        url = "/auth/activate-user/<{uidb64}>/<{token}>"
+        response = c.get(url, follow=True)
+        self.assertEqual(response.status_code, 200)
+        print('[AUTH] Проверка url верификации [x]')
