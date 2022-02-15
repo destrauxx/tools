@@ -2,7 +2,7 @@
 @import './create';
 @import './delete_note';
 @import './email_verification_complete';
-@import './update_collection';
+@import './email_verification_complete_invalid';
 @import './login';
 @import './main';
 @import './read';
@@ -13,6 +13,7 @@
 @import './reset_password_complete';
 @import './reset_password_done';
 @import './update_note';
+@import './update_collection';
 @import './userpage';
 
 :root {

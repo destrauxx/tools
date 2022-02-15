@@ -132,29 +132,6 @@
                             font-size: 19px;
                         }
                     }
-                    .text_upd_field {
-                        width: 325px;
-                        height: 90px;
-                        background: #fff;
-                        border: 3px solid #000000;
-                        box-sizing: border-box;
-                        border-radius: 10px;
-                        margin-top: 10px;
-                        text-indent: 15px;
-                        resize: none;
-                        font-size: 13px;
-                        line-height: 20px;
-                        transition: 0.2s ease-in;
-                        @include media('>=LGdesktop') {
-                            width: 380px;
-                            height: 90px;
-                            font-size: 14px;
-                        }
-                        &:focus {
-                            border: 3px solid #4BCE1C;
-                            background: #ececec;
-                        }
-                    }
                     .submit {
                         border: none;
                         width: 220px;
@@ -187,7 +164,7 @@
 }
 // Accent Color
     // header field
-    .header_upd_field_light_blue {
+    .col_header_upd_field_light_blue {
         width: 325px;
         height: 50px;
         background: #FFFFFF;
@@ -208,7 +185,7 @@
             background: #ececec;
         }
     }
-    .header_upd_field_red {
+    .col_header_upd_field_red {
         width: 325px;
         height: 50px;
         background: #FFFFFF;
@@ -229,7 +206,7 @@
             background: #ececec;
         }
     }
-    .header_upd_field_green {
+    .col_header_upd_field_green {
         width: 325px;
         height: 50px;
         background: #FFFFFF;
@@ -250,7 +227,7 @@
             background: #ececec;
         }
     }
-    .header_upd_field_orange {
+    .col_header_upd_field_orange {
         width: 325px;
         height: 50px;
         background: #FFFFFF;
@@ -264,99 +241,6 @@
         @include media('>=LGdesktop') {
             width: 380px;
             height: 65px;
-            font-size: 14px;
-        }
-        &:focus {
-            border: 3px solid var(--acc-col-orange) !important;
-            background: #ececec;
-        }
-    }
-    // text field
-    .text_upd_field_light_blue {
-        width: 325px;
-        height: 90px;
-        background: #FFFFFF;
-        border: 3px solid #000000;
-        box-sizing: border-box;
-        border-radius: 10px;
-        margin-top: 10px;
-        text-indent: 15px;
-        resize: none;
-        font-size: 13px;
-        line-height: 20px;
-        transition: 0.2s ease-in;
-        @include media('>=LGdesktop') {
-            width: 380px;
-            height: 90px;
-            font-size: 14px;
-        }
-        &:focus {
-            border: 3px solid var(--acc-col-light-blue) !important;
-            background: #ececec;
-        }
-    }
-    .text_upd_field_red {
-        width: 325px;
-        height: 90px;
-        background: #FFFFFF;
-        border: 3px solid #000000;
-        box-sizing: border-box;
-        border-radius: 10px;
-        margin-top: 10px;
-        text-indent: 15px;
-        resize: none;
-        font-size: 13px;
-        line-height: 20px;
-        transition: 0.2s ease-in;
-        @include media('>=LGdesktop') {
-            width: 380px;
-            height: 90px;
-            font-size: 14px;
-        }
-        &:focus {
-            border: 3px solid var(--acc-col-red) !important;
-            background: #ececec;
-        }
-    }
-    .text_upd_field_green {
-        width: 325px;
-        height: 90px;
-        background: #FFFFFF;
-        border: 3px solid #000000;
-        box-sizing: border-box;
-        border-radius: 10px;
-        margin-top: 10px;
-        text-indent: 15px;
-        resize: none;
-        font-size: 13px;
-        line-height: 20px;
-        transition: 0.2s ease-in;
-        @include media('>=LGdesktop') {
-            width: 380px;
-            height: 90px;
-            font-size: 14px;
-        }
-        &:focus {
-            border: 3px solid var(--acc-col-green) !important;
-            background: #ececec;
-        }
-    }
-    .text_upd_field_orange {
-        width: 325px;
-        height: 90px;
-        background: #FFFFFF;
-        border: 3px solid #000000;
-        box-sizing: border-box;
-        border-radius: 10px;
-        margin-top: 10px;
-        text-indent: 15px;
-        resize: none;
-        font-size: 13px;
-        line-height: 20px;
-        transition: 0.2s ease-in;
-        @include media('>=LGdesktop') {
-            width: 380px;
-            height: 90px;
             font-size: 14px;
         }
         &:focus {

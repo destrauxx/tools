@@ -42,10 +42,29 @@ def activate(request, uidb64, token):
         # то user становится активным и сохраняется 
         user.is_active = True
         user.save()
-        return render(request, 'authenticate/email_verification/email_verification_complete.html')
+        return render(request, 'authenticate/email_verification/email_verification_complete.html', {
+                                        'uidb64':urlsafe_base64_encode(force_bytes(user.pk)),
+                                        'token':account_activation_token.make_token(user),})
     else:
+        c = 0
         # Если пользователя нет или токен ссылки не валиден
-        return HttpResponse('Activation link is invalid!')
+        if request.method == "POST":
+            email = user.email
+            current_site = get_current_site(request)
+            email_subject = 'Please, verificate your email'
+            verificate_message = render_to_string('authenticate/email_verification/email_verification_body.html', {
+                                        'domain':current_site.domain,
+                                        'uid':urlsafe_base64_encode(force_bytes(user.pk)),
+                                        'token':account_activation_token.make_token(user),
+                                        })
+            email_adress = EmailMessage(email_subject, verificate_message, to=[email])
+            email_adress.content_subtype = "html"
+            email_adress.send()
+            c += 1
+            messages.add_message(request, messages.WARNING, f'We resent email to verify your account on {email}')
+        else:
+            return render(request, 'authenticate/email_verification/email_verification_complete_invalid.html')
+    return render(request, 'authenticate/email_verification/email_verification_complete_invalid.html')
 
 class RegistrationView(CreateView):
     template_name = 'authenticate/register.html'
