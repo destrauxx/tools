@@ -29,7 +29,7 @@ class NotesTest(TestCase):
         print('[NOTES] Проверка импортирования моделей')
         try:
             from authenticate.models import UserInfo
-            from .models import Note, Collection
+            from .models import Note
             import_status = True
         except:
             import_status = False

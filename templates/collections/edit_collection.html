@@ -1,0 +1,42 @@
+<section class="section-update-collection">
+    <div class="section-update-collection-wrapper">
+        {% if messages %}
+        <div class="edit_messages">
+            <div class="top">
+                <button class="cross"></button>
+            </div>
+            <div class="bottom">
+                {% for message in messages %}
+                <h1 {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}! <a class="linktoread" href="/notes/read/">Go to your notes and check your updated note up</a></h1>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        <div class="section-update-collection-wrapper__main">
+            <div class="section-update-collection-wrapper__main__box {{ user_info.theme }}_bgbox" >
+                <form class="form_upd" action="/notes/collection/{{ pk }}/edit/" method="post">
+                    <h1 class="update_text {{user_info.theme}}_colortext">Update Note</h1>
+                    {% csrf_token %}
+                    
+                    <h4 class="edit_header_text {{user_info.theme}}_labeltext">Edit note header:</h4>
+                    {{ form.name }}
+
+            
+                    <button class="submit {{user_info.accent_color}}_btn" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    // name
+    document.getElementById("id_name").classList.add("col_header_upd_field_{{user_info.accent_color}}");
+    document.getElementById("id_header").placeholder = "Updated header";
+
+
+    let cross = document.querySelector('.cross');
+    let edit_messages = document.querySelector('.edit_messages');
+    cross.addEventListener("click", (e) => {
+        edit_messages.classList.toggle('remove')
+    })
+</script>

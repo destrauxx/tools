@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django_email_verification',
     'notes',
     'authenticate',
+    'collections_module'
 ]
 
 MIDDLEWARE = [

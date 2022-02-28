@@ -11,5 +11,6 @@ urlpatterns = [
     path('', HomePageView.as_view(), name='homepage'),
     path('auth/', include('authenticate.urls')),
     path('notes/', include('notes.urls')),
+    path('notes/', include('collections_module.urls')),
     path('email/', include(email_urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
