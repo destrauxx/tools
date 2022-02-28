@@ -10,6 +10,7 @@ from notes.views import Note
 User = get_user_model()
 c = Client()
 
+# a
 class CollectionsTests(TestCase):
 
     def setUp(self):
