@@ -1,3 +1,7 @@
+from cgitb import text
+from email import header
+from unicodedata import name
+from urllib import response
 from django.test import TestCase, Client
 
 from django.contrib.auth import get_user_model
@@ -55,10 +59,10 @@ class CollectionsTests(TestCase):
         self.assertTrue(response2.status_code == 200)
         self.assertTrue(response3.status_code == 200)
         self.assertTrue(response4.status_code == 200)
-        print('[COLLECTIONS] Проверка urls создания, изменения, удаления коллекции []')
+        print('[COLLECTIONS] Проверка urls коллекции [x]')
 
-    def test_create_edit_collection(self):
-        print('[COLLECTIONS] Проверка создания, изменения коллекции []')
+    def test_CUD_collection(self):
+        print('[COLLECTIONS] Проверка создания, изменения, удаления коллекции []')
         c.login(username='admin', password='123')
         data = {
             'name': 'qwerty',
@@ -80,6 +84,23 @@ class CollectionsTests(TestCase):
         response = c.post(f'/notes/collection/{col.id}/edit/', edit_data, follow=True)
         col = Collection.objects.get(id=1)
 
+        # Тестирование удаления
+        response = c.post(f'/notes/collection/{col.id}/delete/', follow=True)
+        col_count = Collection.objects.count()
+
+        self.assertEqual(old_col_count, col_count, msg='Удаление заметки провалено')
+
         self.assertEqual(col.name, 'qwerty123')
         self.assertEqual(response.status_code, 200)
-        print('[COLLECTIONS] Проверка создания, изменения коллекции [x]')
+        print('[COLLECTIONS] Проверка создания, изменения, удаления коллекции [x]')
+    
+    def test_add_note_to_col(self):
+        print('[COLLECTIONS] Проверка добавления заметки к коллекции коллекции []')
+
+        col = Collection.objects.create(name="col name")
+        note = Note.objects.create(header="header name", text="text...")
+
+        response = c.post(f'/notes/collection/{col.id}/add_note/{note.id}/', follow=True)
+        self.assertTrue(response.status_code == 200)
+
+        print('[COLLECTIONS] Проверка добавления заметки к коллекции коллекции [x]')
