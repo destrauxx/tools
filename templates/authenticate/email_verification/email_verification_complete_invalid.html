@@ -5,26 +5,13 @@
 {% block content %}
     <div class="section-email_verification-complete__invalid">
         <div class="section-email_verification-complete__invalid-wrapper">
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert">
-                        <div class="bottom">
-                            <h1 class="error_text">{{ message }}</h1>
-                        </div>
-                    </div>
-                {% endfor %}
-            {% endif %}
             <div class="section-email_verification-complete__invalid-wrapper-navbar">
-                <div class="section-email_verification-complete__invalid-wrapper-navbar__toolsApp_logo"></div>
+                    <div class="section-email_verification-complete__invalid-wrapper-navbar__toolsApp_logo"></div>
             </div>
             <div class="section-email_verification-complete__invalid-wrapper-content_box">
                 <h1 class="invalid_link__text">Oops!!</h1>
                 <h1 class="invalid_link__text">This link is invalid or already used</h1>
-                <h1 class="invalid_link__text">Click on this button to re-sent you an e-mail letter</h1>
-                <form method="POST">
-                    {% csrf_token %}
-                    <button name="btn_re-sent_email" class="btn">Send</button>
-                </form>
+                <a class="linktohomepage" href="/">HomePage</a>
             </div>
         </div>
     </div>

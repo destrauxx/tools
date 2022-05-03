@@ -1,11 +1,7 @@
-from email import message
-import re
 from datetime import datetime, timezone
-from time import time
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, render, redirect
-from django.urls import reverse_lazy, reverse
-from django.http import HttpResponse
+from django.urls import reverse_lazy
 from django.core.mail import EmailMessage
 
 from django.views.generic import CreateView
@@ -45,25 +41,6 @@ def activate(request, uidb64, token):
         return render(request, 'authenticate/email_verification/email_verification_complete.html', {
                                         'uidb64':urlsafe_base64_encode(force_bytes(user.pk)),
                                         'token':account_activation_token.make_token(user),})
-    else:
-        c = 0
-        # Если пользователя нет или токен ссылки не валиден
-        if request.method == "POST":
-            email = user.email
-            current_site = get_current_site(request)
-            email_subject = 'Please, verificate your email'
-            verificate_message = render_to_string('authenticate/email_verification/email_verification_body.html', {
-                                        'domain':current_site.domain,
-                                        'uid':urlsafe_base64_encode(force_bytes(user.pk)),
-                                        'token':account_activation_token.make_token(user),
-                                        })
-            email_adress = EmailMessage(email_subject, verificate_message, to=[email])
-            email_adress.content_subtype = "html"
-            email_adress.send()
-            c += 1
-            messages.add_message(request, messages.WARNING, f'We resent email to verify your account on {email}')
-        else:
-            return render(request, 'authenticate/email_verification/email_verification_complete_invalid.html')
     return render(request, 'authenticate/email_verification/email_verification_complete_invalid.html')
 
 class RegistrationView(CreateView):
@@ -83,6 +60,10 @@ class RegistrationView(CreateView):
         # Получение почты пользователя, сайта
         # Отправка письма верификации на почту с доменом сайта
         email = form.cleaned_data.get('email')
+        position_of_at = email.find('@')
+        email=email.lower()
+        new_email =  email[0]+'*****'+email[position_of_at-1:].lower()
+
         current_site = get_current_site(self.request)
         email_subject = 'Please, verificate your email'
         verificate_message = render_to_string('authenticate/email_verification/email_verification_body.html', {
@@ -93,7 +74,7 @@ class RegistrationView(CreateView):
         email_adress = EmailMessage(email_subject, verificate_message, to=[email])
         email_adress.content_subtype = "html"
         email_adress.send()
-        messages.add_message(self.request, messages.WARNING, f'We sent email to verify your account on {email}')
+        messages.add_message(self.request, messages.WARNING, f'We sent email to verify your account on {new_email}')
         return redirect('/auth/login')
     
 
