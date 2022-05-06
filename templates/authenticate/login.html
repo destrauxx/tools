@@ -9,7 +9,9 @@
 <section class="section-login">
     <div class="section-login-wrapper">
         <div class="section-login-wrapper-box">
-            <div class="section-login-wrapper-box__logo"></div>
+            <div class="section-login-wrapper-box__navbar">
+                <a href="/" class="section-login-wrapper-box__navbar__logo"></a>
+            </div>
             <div class="section-login-wrapper-box__main">
                 <form class="login-form" action="{% url 'login' %}" method="post" autocomplete="off">
                     {% if messages %}

@@ -467,6 +467,17 @@
                         align-items: center;
                         width: 80vw;
                         height: 70vh;
+                        .block_count_notes {
+                            display: flex;
+                            justify-content: center;
+                            &__count {
+                                font-family: 'Montserrat Alternates', sans-serif;
+                                font-style: normal;
+                                font-weight: 600;
+                                font-size: 24px;
+                                text-align: center;
+                            }
+                        }
                         .notes {
                             display: flex;
                             flex-wrap: wrap;

@@ -17,17 +17,22 @@
                 width: 1025px;
                 height: 725px;
             }
-            &__logo {
-                background: url('../media/login_and_reg_images/Applogo.png');
-                background-repeat: no-repeat;
-                background-size: contain;
-                width: 160px;
-                height: 70px;
-                margin-top: 5px;
-                margin-left: 10px;
-                @include media('>=LGdesktop') {
-                    width: 195px;
-                    height: 85px;
+            &__navbar {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                &__logo {
+                    background: url('../media/login_and_reg_images/Applogo.png');
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    width: 160px;
+                    height: 70px;
+                    margin-top: 5px;
+                    margin-left: 11px;
+                    @include media('>=LGdesktop') {
+                        width: 195px;
+                        height: 85px;
+                    }
                 }
             }
             &__main {

@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Note, Collection
+from .models import Note
 
 class CreateNoteModelForm(forms.ModelForm):
 
@@ -12,14 +12,4 @@ class CreateNoteModelForm(forms.ModelForm):
         ]
         widgets = {
             'header': forms.TextInput(attrs={'placeholder': 'Note header'}),
-        }
-
-class CreateCollectionModelForm(forms.ModelForm):
-    class Meta:
-        model = Collection
-        fields = [
-            'name',
-        ]
-        widgets = {
-            'name': forms.TextInput(attrs={'placeholder': 'Enter collection name'}),
         }

@@ -2,6 +2,8 @@ from django.test import TestCase, Client
 
 from django.contrib.auth import get_user_model
 
+from .models import Note
+
 from authenticate.models import UserInfo
 
 
@@ -26,15 +28,17 @@ class NotesTest(TestCase):
         self.delete_url = '/notes/delete/'
 
     def test_importing_model(self):
-        print('[NOTES] Проверка импортирования моделей')
+        print('[NOTES] Проверка импортирования моделей []')
         try:
             from authenticate.models import UserInfo
-            from .models import Note, Collection
+            from .models import Note
             import_status = True
         except:
             import_status = False
         
         self.assertTrue(import_status, msg='Ошибка импортирования одной из моделей!')
+
+        print('[NOTES] Проверка импортирования моделей [x]')
 
     def test_notes_urls(self):
         print('[NOTES] Проверка всех url заметок')
@@ -56,8 +60,10 @@ class NotesTest(TestCase):
         response = c.get(self.delete_url + f'{note.id}/')
         self.assertEqual(response.status_code, 200, msg='Страница delete недоступна!')
 
+        print('[NOTES] Проверка всех url заметок [x]')
+
     def test_CUD_notes(self):
-        print('[NOTES] Проверка создания, удаления, редактирования заметки')
+        print('[NOTES] Проверка создания, удаления, редактирования заметки []')
 
         c.login(username='admin', password='123')
         data = {
@@ -94,3 +100,16 @@ class NotesTest(TestCase):
 
         self.assertEqual(old_notes_count, notes_count, msg='Удаление заметки провалено')
         self.assertEqual(response.status_code, 302, msg='Перенаправление после удаления заметки провалено')
+
+        print('[NOTES] Проверка создания, удаления, редактирования заметки [x]')
+    
+    def test_search_note(self):
+        print('[NOTES] Проверка поиска заметки []')
+
+        c.login(username="admin", password="123")
+
+        note = Note.objects.create(header="note text", text="text")
+        response = c.get('/notes/read/', {'search-input': 'note text'})
+
+        self.assertEqual(response.status_code, 200)
+        print('[NOTES] Проверка поиска заметки [x]')

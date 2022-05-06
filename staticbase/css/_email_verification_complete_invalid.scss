@@ -1,0 +1,83 @@
+.section-email_verification-complete__invalid {
+    height: 100vh;
+    &-wrapper {
+        height: 100vh;
+        position: relative;
+        .alert {
+            width: 450px;
+            height: 60px;
+            border: none;
+            border-radius: 10px;    
+            position: absolute;
+            top: 7%;
+            right: -15%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation: animate 0.6s ease-in;
+            z-index: 1000;
+            background-color: #4BCE1C;
+            @include media('>=LGdesktop') {
+                top: 7%;
+                right: -11%;
+            }
+            .bottom {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .error_text {
+                    font-size: 16px;
+                    font-family: 'Montserrat Alternates', sans-serif;
+                    text-align: center;
+                    letter-spacing: 0.1em;
+                    margin-left: 10px;
+                }
+            }
+        }
+        &-navbar {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            &__toolsApp_logo {
+                background: url('../media/index_images/Applogo.png');
+                background-repeat: no-repeat;
+                background-size: contain;
+                width: 160px;
+                height: 45px;
+                margin-left: 15px;
+                @include media('>=LGdesktop') {
+                    width: 195px;
+                    height: 65px;
+                }
+            }
+        }
+        &-content_box {
+            width: 100vw;
+            height: 92vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .invalid_link__text {
+                font-family: 'Montserrat Alternates', sans-serif;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 33px;
+                padding: 5px 0;
+            }
+            .linktohomepage {
+                text-decoration: underline #4BCE1C;
+                color: #4BCE1C;
+                font-weight: 600;
+                font-family: 'Montserrat Alternates';
+                letter-spacing: 0.1px;
+                font-size: 21px;
+                @include media('>=LGdesktop') {
+                    font-size: 25px;
+                }
+            }
+        }
+    }
+}

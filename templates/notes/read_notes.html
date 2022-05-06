@@ -53,7 +53,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="logo_toolApp {{user_info.theme}}_theme_{{user_info.accent_color}}_logo"></div>
+                    <a href="/notes/read/" class="logo_toolApp {{user_info.theme}}_theme_{{user_info.accent_color}}_logo"></a>
                 </div>
                 <div class="right-section">
                     <div class="search-block">
@@ -72,6 +72,11 @@
                 <div class="section-read-wrapper__main__notes_block">
                     <div class='bottom_note_page'>
                         <div class="notes_block">
+                            {% if s == True %}
+                                <div class="block_count_notes">
+                                    <h1 class="block_count_notes__count {{user_info.theme}}_elems">Found {{ notes_count }} notes with title "{{ search_input }}"</h1>
+                                </div>
+                            {% endif %}
                             {% if selected_collection %}
                                 <div class="pagination">
                                     {% if prev > 0 %}
