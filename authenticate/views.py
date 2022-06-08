@@ -6,7 +6,7 @@ from django.core.mail import EmailMessage
 
 from django.views.generic import CreateView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormMixin
 
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.models import User
@@ -86,7 +86,7 @@ class LogoutView(LogoutView):
     redirect_field_name = reverse_lazy("homepage")
     template_name = "index.html"
 
-class ProfileView(DetailView, FormView):
+class ProfileView(FormMixin, DetailView):
     template_name = "authenticate/profile.html"
     model = UserInfo
 
